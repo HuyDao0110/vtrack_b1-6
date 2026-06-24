@@ -255,7 +255,7 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
             
             for song in songs:
                 # Dùng markdown với h3 để font chữ cân đối với tiêu đề
-                st.markdown(f"### {song}")
+                st.markdown(f"{song}")
                 # Đường kẻ ngang tối màu, nằm sát dưới mỗi bài hát
                 st.markdown("<hr style='margin-top: 5px; margin-bottom: 15px; border: 0.5px solid #333;'>", unsafe_allow_html=True)
 
