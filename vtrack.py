@@ -237,12 +237,30 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
 
     # 2. PHẦN GIỮA: Danh sách bài hát
     st.write("---")
-    songs = [
-        "1. MOONLIGHT", "2. Nghệ Thuật Gia Vĩ Đại", "3. Là Anh", 
-        "4. Ego-holic", "5. Nghịch Chiến", "6. Sổ Tay Rèn Luyện Thanh Xuân", "7. DNA"
+   # 2. PHẦN GIỮA: Danh sách bài hát (Đã xử lý theo logic BXH)
+    st.write("---")
+    # Giả định dữ liệu bài hát của nghệ sĩ
+    artist_songs = [
+        {"rank": "1", "title": "MOONLIGHT", "duration": "3:45"},
+        {"rank": "2", "title": "Nghệ Thuật Gia Vĩ Đại", "duration": "4:12"},
+        {"rank": "3", "title": "Là Anh", "duration": "3:20"},
+        {"rank": "4", "title": "Ego-holic", "duration": "3:55"},
+        {"rank": "5", "title": "Nghịch Chiến", "duration": "4:05"},
+        {"rank": "6", "title": "Sổ Tay Rèn Luyện Thanh Xuân", "duration": "3:30"},
+        {"rank": "7", "title": "DNA", "duration": "3:15"}
     ]
-    for song in songs:
-        st.write(f"#### {song}")
+
+    for s in artist_songs:
+        # Chia cột để căn tiêu đề bài hát (trái) và thời lượng (phải)
+        col1, col2 = st.columns([0.8, 0.2])
+        
+        with col1:
+            st.write(f"{s['rank']}. {s['title']}")
+        with col2:
+            # Căn lề phải cho thời lượng bài hát
+            st.markdown(f"<p style='text-align: right; margin: 0; color: gray;'>{s['duration']}</p>", unsafe_allow_html=True)
+            
+        # Đường kẻ ngang tinh tế
         st.markdown("<hr style='margin: 5px 0px;'>", unsafe_allow_html=True)
 
     # 3. PHẦN DƯỚI: Tiểu sử
