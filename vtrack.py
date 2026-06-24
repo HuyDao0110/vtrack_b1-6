@@ -50,9 +50,10 @@ if st.session_state.page == "Home":
     # --- ALBUM NỔI BẬT ---
     col_title, col_btn = st.columns([5, 1])
     with col_title:
-        st.write("## Album *Nổi bật*") # Ví dụ: ## Nghệ sĩ Phổ biến
+        st.write("## Album *Nổi bật*") 
     with col_btn:
-        st.button("Thêm", key="btn_more_unique_id", use_container_width=True)
+        # Thay đổi key thành 'btn_more_albums' để không trùng với nghệ sĩ
+        st.button("Thêm", key="btn_more_albums", use_container_width=True)
     alb_cols = st.columns(6)
     albums = ["B1.png", "B2.png", "B3.png", "B4.png", "B5.png", "B6.png"]
     for i, file_name in enumerate(albums):
