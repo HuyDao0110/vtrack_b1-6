@@ -58,13 +58,13 @@ if st.session_state.page == "Home":
     bxh_l, bxh_r = st.columns([3.5, 6.5])
     
     with bxh_l:
-        # Sử dụng lại file ảnh gốc của bạn để không bị lỗi tệp tin
-        st.image("BXH_nhac_si_nghe_si.png", use_container_width=True)
+        # Sử dụng đúng tên file ảnh hiển thị bục số 1, 2, 3 của bạn
+        st.image("come_my_way.png", use_container_width=True)
             
     with bxh_r:
-        # Tạo dữ liệu bảng xếp hạng từ vị trí số 2 đến số 10
-        data = {
-            "#": ["2", "3", "4", "5", "6", "7", "8", "9", "10"],
+        # Chuẩn hóa dữ liệu bảng từ vị trí số 2 đến số 10
+        bxh_data = {
+            "#": [2, 3, 4, 5, 6, 7, 8, 9, 10],
             "Tiêu đề": [
                 "Em", 
                 "Nếu như ta chẳng còn", 
@@ -89,9 +89,9 @@ if st.session_state.page == "Home":
             ]
         }
         
-        df = pd.DataFrame(data)
+        df = pd.DataFrame(bxh_data)
         
-        # Hiển thị bằng bảng thuần túy, vừa khít khung, khoảng cách cực kỳ tối ưu
+        # Hiển thị bảng thuần túy, tự động căn khoảng cách khít đều và có viền kẻ ô đẹp mắt
         st.dataframe(df, use_container_width=True, hide_index=True)
 
 elif st.session_state.page == "Nghệ sĩ":
