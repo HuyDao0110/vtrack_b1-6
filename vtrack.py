@@ -34,11 +34,11 @@ if st.session_state.page == "Home":
     # Lưu ý: Python mặc định trả về thứ bằng tiếng Anh, ta sẽ map sang tiếng Việt
     days = ["Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy", "Chủ Nhật"]
     day_name = days[now.weekday()]
-    date_str = now.strftime(f"{day_name}, %d/%m/%Y")
+    date_str = now.strftime(f"*{day_name}, %d-%m-%Y*")
     
     # Hiển thị lời chào
     st.markdown("## Nghe gì hôm nay, User?")
-    st.write(f"#### Hôm nay là: **{date_str}**")
+    st.write(f"### Hôm nay là **{date_str}**")
     st.image("best_notification.png", use_container_width=True)
 
     # --- NGHỆ SĨ PHỔ BIẾN ---
