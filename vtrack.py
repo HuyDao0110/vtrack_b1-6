@@ -26,7 +26,8 @@ st.write("---")
 
 # --- 2. QUẢN LÝ CÁC TRANG ---
 if st.session_state.page == "Home":
-    st.write("# Nghe gì hôm nay, User?")
+    st.write("## Nghe gì hôm nay,") 
+    st.write("# User?")
     st.image("best_notification.png", use_container_width=True)
 
     # --- NGHỆ SĨ PHỔ BIẾN ---
