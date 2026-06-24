@@ -252,8 +252,8 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
 
     # 3. PHẦN DƯỚI: Tiểu sử
     st.write("### Tiểu sử")
-    st.write("Trang Pháp (Nguyễn Thùy Trang, sinh năm 1989) là một nữ nghệ sĩ toàn năng của showbiz Việt, nổi bật với vai trò ca sĩ, nhạc sĩ và nhà sản xuất âm nhạc. Xuất phát điểm là một hot girl đời đầu bước ra từ bộ phim Nhật ký Vàng Anh 2, cô nhanh chóng chuyển hướng sang âm nhạc và khẳng định tài năng thiên bẩm qua khả năng sáng tác bằng cả tiếng Việt, tiếng Anh và tiếng Pháp. Với tư duy âm nhạc hiện đại, Trang Pháp từng được mệnh danh là "Nữ hoàng nhạc phim" khi đứng sau loạt bản hit OST của các bộ phim điện ảnh đình đám như Scandal, Gái già lắm chiêu.
-Sau một thời gian lui về hậu trường làm sản xuất, cô đã có màn tái xuất bùng nổ tại chương trình Chị Đẹp Đạp Gió Rẽ Sóng 2023. Bằng kỹ năng toàn diện từ ca hát, vũ đạo, sáng tác cho đến dàn dựng sân khấu, cô xuất sắc giành ngôi vị Quán quân chung cuộc, khẳng định vị thế của một nghệ sĩ độc lập, tư duy văn minh và có tầm ảnh hưởng lớn trong làng nhạc Việt hiện đại.")
+    st.write("Trang Pháp (Nguyễn Thùy Trang, sinh năm 1989) là một nữ nghệ sĩ toàn năng của showbiz Việt, nổi bật với vai trò ca sĩ, nhạc sĩ và nhà sản xuất âm nhạc. Trang Pháp từng được mệnh danh là "Nữ hoàng nhạc phim" khi đứng sau loạt bản hit OST của các bộ phim điện ảnh đình đám như Scandal, Gái già lắm chiêu.
+Sau một thời gian lui về hậu trường làm sản xuất, cô đã có màn tái xuất bùng nổ tại chương trình Chị Đẹp Đạp Gió Rẽ Sóng 2023. Bằng các kỹ năng toàn diện, cô xuất sắc giành ngôi vị Quán quân, khẳng định vị thế của một nghệ sĩ có tư duy văn minh và tầm ảnh hưởng lớn trong làng nhạc Việt hiện đại.")
     
     # 4. PHẦN: Có thể bạn thích
     st.write("## Có thể bạn thích")
