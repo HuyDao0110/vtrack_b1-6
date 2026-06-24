@@ -51,6 +51,9 @@ if st.session_state.page == "Home":
         with alb_cols[i]:
             st.image(file_name, use_container_width=True)
 
+    # --- BXH NHẠC SĨ, NGHỆ SĨ TUẦN NÀY ---
+    st.write("## BXH Nhạc sĩ, Nghệ sĩ *Tuần này*")
+    st.image("BXH_nhac_si_nghe_si.jpg", use_container_width=True)
     # --- BXH BÀI HÁT NỔI BẬT THÁNG NÀY ---
     st.write("## BXH bài hát nổi bật *Tháng này*")
     
