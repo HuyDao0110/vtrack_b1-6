@@ -16,9 +16,9 @@ with nav[1]:
     st.text_input("Tìm kiếm...", label_visibility="collapsed")
 
 with nav[2]:
-    if st.button("Home", use_container_width=True): st.session_state.page = "Home"
+    if st.button("🏠 Home", use_container_width=True): st.session_state.page = "Home"
 with nav[3]:
-    if st.button("Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
+    if st.button("📚 Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
 with nav[4]:
     if st.button("Đăng nhập", use_container_width=True): st.session_state.page = "Đăng nhập"
 with nav[5]:
@@ -57,35 +57,29 @@ if st.session_state.page == "Home":
     bxh_l, bxh_r = st.columns([3.5, 6.5])
     
     with bxh_l:
-        # Sử dụng đúng tên file ảnh hiển thị bục số 1, 2, 3 của Huy
+        # Nhập chuẩn tên file ảnh bìa bạn muốn hiển thị ở đây
         st.image("come_my_way.png", use_container_width=True)
             
     with bxh_r:
-        # Dùng container bao quanh vòng lặp giúp triệt tiêu khoảng trống thừa giữa các dòng st.columns
-        with st.container():
-            # Cập nhật danh sách chuẩn 100% theo thiết kế ảnh 1 của Huy
-            songs = [
-                {"rank": "2", "title": "Em", "artist": "Binz"},
-                {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
-                {"rank": "4", "title": "IDK", "artist": "RPT MCK"},
-                {"rank": "5", "title": "Nguyễn Văn Mười", "artist": "RPT MCK"},
-                {"rank": "6", "title": "người còn thương em không", "artist": "Tóc Tiên"},
-                {"rank": "7", "title": "LÁ NGỌC CÀNH VÀNG", "artist": "Kiều Anh"},
-                {"rank": "8", "title": "Có công mài “sắc” Afrobeats", "artist": "Ngô Lan Hương"},
-                {"rank": "9", "title": "Tây Thi", "artist": "RPT MCK"},
-                {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
-            ]
+        songs = [
+            {"rank": "2", "title": "Em", "artist": "Binz"},
+            {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
+            {"rank": "4", "title": "IDK", "artist": "RPT MCK"},
+            {"rank": "5", "title": "Nguyễn Văn Mười", "artist": "RPT MCK"},
+            {"rank": "6", "title": "người còn thương em không", "artist": "Tóc Tiên"},
+            {"rank": "7", "title": "LÁ NGỌC CÀNH VÀNG", "artist": "Kiều Anh"},
+            {"rank": "8", "title": "Có công mài “sắc” Afrobeats", "artist": "Ngô Lan Hương"},
+            {"rank": "9", "title": "Tây Thi", "artist": "RPT MCK"},
+            {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
+        ]
+        
+        for s in songs:
+            # Sử dụng đúng cấu trúc st.columns chia hàng của bạn
+            sl, sr = st.columns([8, 2])
             
-            for s in songs:
-                # Chia tỉ lệ cột 7.5 và 2.5 để đẩy tên nghệ sĩ sát về lề phải
-                sl, sr = st.columns([7.5, 2.5])
-                
-                # Hiển thị nội dung
-                sl.write(f"{s['rank']}. {s['title']}")
-                sr.write(f"**{s['artist']}**")
-                
-                # Đường gạch ngang mảnh phân cách khít rịt giữa các bài hát
-                st.write("---")
+            # Bí quyết: Gộp đường kẻ ngang '\n\n---' vào chung dòng text để triệt tiêu khoảng cách thừa
+            sl.write(f"{s['rank']}. {s['title']}\n\n---")
+            sr.write(f"**{s['artist']}**\n\n---")
 
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
