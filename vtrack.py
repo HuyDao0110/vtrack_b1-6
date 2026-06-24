@@ -61,22 +61,33 @@ if st.session_state.page == "Home":
         st.image("come_my_way.png", use_container_width=True)
             
     with bxh_r:
-        # Tạo bảng bằng Markdown ẩn dòng tiêu đề, giúp căn lề trái-phải tuyệt đối và ép dòng khít sát nhau
-        bxh_table = """
-| | |
-| :--- | ---: |
-| 2. Em | Binz |
-| 3. Nếu như ta chẳng còn | RPT MCK |
-| 4. IDK | RPT MCK |
-| 5. Nguyễn Văn Mười | RPT MCK |
-| 6. người còn thương em không | Tóc Tiên |
-| 7. LÁ NGỌC CÀNH VÀNG | Kiều Anh |
-| 8. Có công mài “sắc” Afrobeats | Ngô Lan Hương |
-| 9. Tây Thi | RPT MCK |
-| 10. toidaidot | GREY D |
-"""
-        st.markdown(bxh_table)
-
+        # Danh sách bài hát chuẩn của Huy
+        songs = [
+            {"rank": "2", "title": "Em", "artist": "Binz"},
+            {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
+            {"rank": "4", "title": "IDK", "artist": "RPT MCK"},
+            {"rank": "5", "title": "Nguyễn Văn Mười", "artist": "RPT MCK"},
+            {"rank": "6", "title": "người còn thương em không", "artist": "Tóc Tiên"},
+            {"rank": "7", "title": "LÁ NGỌC CÀNH VÀNG", "artist": "Kiều Anh"},
+            {"rank": "8", "title": "Có công mài “sắc” Afrobeats", "artist": "Ngô Lan Hương"},
+            {"rank": "9", "title": "Tây Thi", "artist": "RPT MCK"},
+            {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
+        ]
+        
+        # Bắt buộc gom vào container để kiểm soát khoảng cách gap="small" giúp khít dòng
+        with st.container(border=False):
+            for s in songs:
+                # Chia cột tỉ lệ 8.5 và 1.5 để đẩy tên ca sĩ sát lề phải nhất có thể
+                sl, sr = st.columns([8.5, 1.5])
+                
+                # Căn lề trái mặc định cho tên bài hát
+                sl.write(f"{s['rank']}. {s['title']}")
+                
+                # Căn lề phải cho nghệ sĩ bằng cách dùng cú pháp Markdown text-align
+                sr.write(f"<p style='text-align: right; margin: 0; font-weight: bold;'>{s['artist']}</p>", unsafe_allow_html=True)
+                
+                # Đường gạch ngang mảnh liền mạch của Streamlit nằm ngay dưới mỗi hàng
+                st.markdown("---")
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
     st.write("---")
