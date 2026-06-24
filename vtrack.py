@@ -53,7 +53,7 @@ if st.session_state.page == "Home":
 
     # --- BXH NHẠC SĨ, NGHỆ SĨ TUẦN NÀY ---
     st.write("## BXH Nhạc sĩ, Nghệ sĩ *Tuần này*")
-    st.image("BXH_nhac_si_nghe_si.jpg", use_container_width=True)
+    st.image("BXH_nhac_si_nghe_si.png", use_container_width=True)
     # --- BXH BÀI HÁT NỔI BẬT THÁNG NÀY ---
     st.write("## BXH bài hát nổi bật *Tháng này*")
     
