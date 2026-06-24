@@ -39,7 +39,7 @@ if st.session_state.page == "Home":
     with col_btn:
         # Nút bấm không kèm logic xử lý, chỉ để hiển thị cho đẹp
         st.button("Thêm", key="btn_more_unique_id", use_container_width=True)
-    art_cols = st.columns(5)
+    art_cols = st.columns(4)
     artists = [
         (" ", "A1.png"), (" ", "A2.png"), 
         (" ", "A3.png"), (" ", "A4.png"), 
