@@ -58,7 +58,7 @@ if st.session_state.page == "Home":
     
     with bxh_l:
         # Sử dụng đúng tên file ảnh hiển thị bục số 1, 2, 3 của Huy
-        st.image("best_notification.png", use_container_width=True)
+        st.image("come_my_way.png", use_container_width=True)
             
     with bxh_r:
         # Dùng container bao quanh vòng lặp giúp triệt tiêu khoảng trống thừa giữa các dòng st.columns
