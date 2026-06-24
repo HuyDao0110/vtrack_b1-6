@@ -219,7 +219,7 @@ elif st.session_state.page == "Ngôn ngữ":
         with cols[i % num_cols]:
             st.write(f"{lang}")
 
-elif st.session_state.page == "Nghệ sĩ":
+elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
     # Nút quay lại
     if st.button("⬅ Quay lại"): 
         st.session_state.page = "Home"
