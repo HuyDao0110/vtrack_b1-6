@@ -6,11 +6,12 @@ st.set_page_config(page_title="YTrack - Ứng dụng nghe nhạc", layout="wide"
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
-# --- 1. THANH ĐIỀU HƯỚNG (Mỏng, gọn gàng, ôm sát nội dung) ---
-nav = st.columns([1.2, 5.3, 1.7, 1.8])
+# --- 1. THANH ĐIỀU HƯỚNG (Ép mỏng chiều dọc, logo nhỏ gọn hẳn lại) ---
+# Chỉnh cột logo xuống 0.8 để ép ảnh nhỏ lại, tăng cột tìm kiếm lên để giãn ngang
+nav = st.columns([0.8, 5.7, 1.7, 1.8])
 
 with nav[0]:
-    st.image("logo.png", width=85) # Thu gọn logo để menu không bị phình chiều dọc
+    st.image("logo.png", width=65) # Hạ hẳn width xuống 65 để thanh menu siêu mỏng
 
 with nav[1]:
     st.text_input("Tìm kiếm...", label_visibility="collapsed")
@@ -31,10 +32,9 @@ st.write("---")
 if st.session_state.page == "Home":
     st.write("# Nghe gì hôm nay, User?")
     
-    # Banner chính co giãn tràn khung hình
     st.image("best_notification.png", use_container_width=True)
 
-    # --- NGHỆ SĨ PHỔ BIẾN (Ảnh tự động to ra lấp đầy cột) ---
+    # --- NGHỆ SĨ PHỔ BIẾN ---
     st.write("## Nghệ sĩ phổ biến")
     art_cols = st.columns(5)
     artists = [
@@ -60,7 +60,7 @@ if st.session_state.page == "Home":
     st.write("## BXH bài hát nổi bật *Tháng này*")
     bxh_l, bxh_r = st.columns([3.5, 6.5])
     with bxh_l:
-        # Đã cập nhật sang file đuôi .jpg mới của bạn
+        # CHÚ Ý: Đã sửa thành đúng đuôi "come_my_way.jpg" để không bị lỗi sập app nữa
         st.image("come_my_way.jpg", use_container_width=True)
             
     with bxh_r:
@@ -80,7 +80,6 @@ elif st.session_state.page == "Nghệ sĩ":
     st.write("---")
     l, r = st.columns([4, 6])
     with l:
-        # Sử dụng file ảnh riêng cho trang nghệ sĩ
         st.image("trang_phap.jpg", use_container_width=True)
     with r:
         st.write("# Trang Pháp và hành trình")
