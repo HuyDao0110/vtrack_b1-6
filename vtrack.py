@@ -1,0 +1,91 @@
+import streamlit as st
+
+# --- CẤU HÌNH TRANG WEB ---
+st.set_page_config(page_title="YTrack - Ứng dụng nghe nhạc", layout="wide")
+
+if "page" not in st.session_state:
+    st.session_state.page = "Home"
+
+# --- 1. THANH ĐIỀU HƯỚNG (Mỏng, gọn gàng, ôm sát nội dung) ---
+nav = st.columns([1.2, 5.3, 1.7, 1.8])
+
+with nav[0]:
+    st.image("logo.png", width=85) # Thu gọn logo để menu không bị phình chiều dọc
+
+with nav[1]:
+    st.text_input("Tìm kiếm...", label_visibility="collapsed")
+
+with nav[2]:
+    c1, c2 = st.columns(2)
+    if c1.button("🏠 Home", use_container_width=True): st.session_state.page = "Home"
+    if c2.button("📚 Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
+
+with nav[3]:
+    c3, c4 = st.columns(2)
+    if c3.button("Đăng nhập", use_container_width=True): st.session_state.page = "Đăng nhập"
+    if c4.button("Đăng ký", use_container_width=True): st.session_state.page = "Đăng ký"
+
+st.write("---")
+
+# --- 2. QUẢN LÝ CÁC TRANG ---
+if st.session_state.page == "Home":
+    st.write("# Nghe gì hôm nay, User?")
+    
+    # Banner chính co giãn tràn khung hình
+    st.image("best_notification.png", use_container_width=True)
+
+    # --- NGHỆ SĨ PHỔ BIẾN (Ảnh tự động to ra lấp đầy cột) ---
+    st.write("## Nghệ sĩ phổ biến")
+    art_cols = st.columns(5)
+    artists = [
+        ("Sơn Tùng M-TP", "A1.jpg"),
+        ("SOOBIN", "A2.jpg"),
+        ("bùi trường linh", "A3.png"),
+        ("Trang Pháp", "A4.jpg"),
+        ("Xem thêm", "A5.jpg")
+    ]
+    for i, (name, file_name) in enumerate(artists):
+        with art_cols[i]:
+            st.image(file_name, caption=name, use_container_width=True)
+
+    # --- ALBUM NỔI BẬT ---
+    st.write("## Album nổi bật")
+    alb_cols = st.columns(6)
+    albums = ["B1.jpg", "B2.jpg", "B3.jpg", "B4.jpg", "B5.jpg", "B6.jpg"]
+    for i, file_name in enumerate(albums):
+        with alb_cols[i]:
+            st.image(file_name, use_container_width=True)
+
+    # --- BXH BÀI HÁT NỔI BẬT THÁNG NÀY ---
+    st.write("## BXH bài hát nổi bật *Tháng này*")
+    bxh_l, bxh_r = st.columns([3.5, 6.5])
+    with bxh_l:
+        # Đã cập nhật sang file đuôi .jpg mới của bạn
+        st.image("come_my_way.jpg", use_container_width=True)
+            
+    with bxh_r:
+        songs = [
+            {"rank": "2", "title": "Em", "artist": "Binz"},
+            {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
+            {"rank": "4", "title": "IDK", "artist": "RPT MCK"},
+            {"rank": "5", "title": "Nguyễn Văn Mười", "artist": "RPT MCK"}
+        ]
+        for s in songs:
+            sl, sr = st.columns([8, 2])
+            sl.write(f"{s['rank']}. {s['title']}")
+            sr.write(f"**{s['artist']}**")
+
+elif st.session_state.page == "Nghệ sĩ":
+    if st.button("⬅ Quay lại"): st.session_state.page = "Home"
+    st.write("---")
+    l, r = st.columns([4, 6])
+    with l:
+        # Sử dụng file ảnh riêng cho trang nghệ sĩ
+        st.image("trang_phap.jpg", use_container_width=True)
+    with r:
+        st.write("# Trang Pháp và hành trình")
+        st.write("▶ Phát tất cả | 7 bài hát")
+
+elif st.session_state.page == "Thư viện":
+    st.image("thu_vien_yeu_thich.png", use_container_width=True)
+    if st.button("Trở về"): st.session_state.page = "Home"
