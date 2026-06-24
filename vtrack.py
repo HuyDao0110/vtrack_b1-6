@@ -35,9 +35,9 @@ if st.session_state.page == "Home":
     st.write("## Nghệ sĩ phổ biến")
     art_cols = st.columns(5)
     artists = [
-        ("Sơn Tùng M-TP", "A1.png"), ("SOOBIN", "A2.png"), 
-        ("bùi trường linh", "A3.png"), ("Trang Pháp", "A4.png"), 
-        ("Xem thêm", "A5.png")
+        (" ", "A1.png"), (" ", "A2.png"), 
+        (" ", "A3.png"), (" ", "A4.png"), 
+        (" ", "A5.png")
     ]
     for i, (name, file_name) in enumerate(artists):
         with art_cols[i]:
