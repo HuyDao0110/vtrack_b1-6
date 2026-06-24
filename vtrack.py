@@ -219,31 +219,34 @@ elif st.session_state.page == "Ngôn ngữ":
         with cols[i % num_cols]:
             st.write(f"{lang}")
 
-elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
+elif st.session_state.page == "Nghệ sĩ":
     # Nút quay lại
-    if st.button("⬅ Quay lại"): st.session_state.page = "Home"
+    if st.button("⬅ Quay lại"): 
+        st.session_state.page = "Home"
     
-    # 1. PHẦN ĐẦU: Ảnh bìa & Thông tin
-    l, r = st.columns([3, 7])
-    
-    with l:
-        st.image("trang_phap.png", use_container_width=True)
-    
-    with r:
-        st.markdown("# Trang Pháp và hành trình trong CHENGFENG 2026")
-        
-        # Phần nút "Phát danh sách" và "Thời lượng"
-        # Dùng container nhỏ để các nút nằm cùng hàng
-        btn_col, dur_col = st.columns([2, 5])
-        with btn_col:
-            st.button("▶ Phát danh sách")
-        with dur_col:
-            st.write("7 bài hát • 24 phút 42 giây")
-            
-        # Thêm nút tùy chọn (dùng icon hoặc chữ)
-        st.write("➕  ... (Thêm/Tùy chọn)")
+    st.write("---")
 
-    # 2. DANH SÁCH BÀI HÁT (Logic giống BXH bài hát)
+    # Sử dụng container để bọc toàn bộ nội dung trang nghệ sĩ
+    with st.container():
+        # 1. BỐ CỤC CHÍNH (Ảnh và thông tin nghệ sĩ)
+        l, r = st.columns([3, 7])
+        
+        with l:
+            st.image("trang_phap.png", use_container_width=True)
+            
+        with r:
+            st.markdown("# Trang Pháp và hành trình trong CHENGFENG 2026")
+            
+            # Đảm bảo các nút nằm gọn trên một hàng
+            c_btn, c_info = st.columns([1, 3])
+            with c_btn:
+                st.button("▶ Phát danh sách")
+            with c_info:
+                st.write("7 bài hát • 24 phút 42 giây")
+            
+            st.write("➕ ... (Thêm/Tùy chọn)")
+
+    # 2. DANH SÁCH BÀI HÁT (Sử dụng CSS để đường kẻ sắc nét hơn)
     st.write("---")
     songs = [
         "1. MOONLIGHT", "2. Nghệ Thuật Gia Vĩ Đại", "3. Là Anh", 
@@ -251,9 +254,10 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
     ]
     
     for song in songs:
+        # Dùng markdown với h3 để font chữ cân đối với tiêu đề
         st.markdown(f"### {song}")
-        # Dùng hr với độ mờ thấp để tạo cảm giác sang trọng như thiết kế
-        st.markdown("<hr style='margin: 5px 0px; border-top: 1px solid #333;'>", unsafe_allow_html=True)
+        # Đường kẻ ngang tối màu, nằm sát dưới mỗi bài hát
+        st.markdown("<hr style='margin-top: 5px; margin-bottom: 15px; border: 0.5px solid #333;'>", unsafe_allow_html=True)
 
     # 3. PHẦN DƯỚI: Tiểu sử
     st.write("### Tiểu sử")
