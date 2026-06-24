@@ -119,5 +119,3 @@ elif st.session_state.page == "Đăng nhập":
         if c2.button("Đăng ký", use_container_width=True):
             st.session_state.page = "Đăng ký"
             
-        # Để trang trí, bạn có thể chèn ảnh wallpaper ở trên cùng hoặc dưới cùng cột center_col
-        st.image("wallpaper.png", use_container_width=True)
