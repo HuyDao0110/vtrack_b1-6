@@ -130,7 +130,7 @@ if st.session_state.page == "Home":
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
     st.write("---")
-    l, r = st.columns([4, 6])
+    l, r = st.columns([2, 1])
     with l: st.image("trang_phap.png", use_container_width=True)
     with r:
         st.write("# Trang Pháp và hành trình")
