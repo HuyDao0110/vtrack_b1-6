@@ -127,15 +127,6 @@ if st.session_state.page == "Home":
             # Đường kẻ ngang với margin bằng 0 để thu hẹp khoảng cách
             st.markdown("<hr style='margin: 5px 0px;'>", unsafe_allow_html=True)
 
-elif st.session_state.page == "Nghệ sĩ":
-    if st.button("⬅ Quay lại"): st.session_state.page = "Home"
-    st.write("---")
-    l, r = st.columns([2, 1])
-    with l: st.image("trang_phap.png", use_container_width=True)
-    with r:
-        st.write("# Trang Pháp và hành trình")
-        st.write("▶ Phát tất cả | 7 bài hát")
-
 elif st.session_state.page == "Thư viện":
     st.image("thu_vien_yeu_thich.png", use_container_width=True)
 
@@ -229,7 +220,7 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
     # Sử dụng container để bọc toàn bộ nội dung trang nghệ sĩ
     with st.container():
         # 1. BỐ CỤC CHÍNH (Ảnh và thông tin nghệ sĩ)
-        l, r = st.columns([2, 1])
+        l, r = st.columns([4, 6])
         
         with l:
             st.image("trang_phap.png", width=5000)
@@ -261,7 +252,8 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
 
     # 3. PHẦN DƯỚI: Tiểu sử
     st.write("### Tiểu sử")
-    st.write("Trang Pháp (Nguyễn Thùy Trang, sinh năm 1989) là một nữ nghệ sĩ toàn năng...")
+    st.write("Trang Pháp (Nguyễn Thùy Trang, sinh năm 1989) là một nữ nghệ sĩ toàn năng của showbiz Việt, nổi bật với vai trò ca sĩ, nhạc sĩ và nhà sản xuất âm nhạc. Xuất phát điểm là một hot girl đời đầu bước ra từ bộ phim Nhật ký Vàng Anh 2, cô nhanh chóng chuyển hướng sang âm nhạc và khẳng định tài năng thiên bẩm qua khả năng sáng tác bằng cả tiếng Việt, tiếng Anh và tiếng Pháp. Với tư duy âm nhạc hiện đại, Trang Pháp từng được mệnh danh là "Nữ hoàng nhạc phim" khi đứng sau loạt bản hit OST của các bộ phim điện ảnh đình đám như Scandal, Gái già lắm chiêu.
+Sau một thời gian lui về hậu trường làm sản xuất, cô đã có màn tái xuất bùng nổ tại chương trình Chị Đẹp Đạp Gió Rẽ Sóng 2023. Bằng kỹ năng toàn diện từ ca hát, vũ đạo, sáng tác cho đến dàn dựng sân khấu, cô xuất sắc giành ngôi vị Quán quân chung cuộc, khẳng định vị thế của một nghệ sĩ độc lập, tư duy văn minh và có tầm ảnh hưởng lớn trong làng nhạc Việt hiện đại.")
     
     # 4. PHẦN: Có thể bạn thích
     st.write("## Có thể bạn thích")
