@@ -109,6 +109,7 @@ elif st.session_state.page == "Đăng nhập":
     
     # Form chính nằm ở cột giữa
     with col_center:
+        st.write("#  ")
         st.write("# Chào mừng bạn quay trở lại")
         
         st.text_input("Tên tài khoản (Username)", placeholder="Nhập tên tài khoản")
@@ -133,6 +134,7 @@ elif st.session_state.page == "Đăng ký":
         st.image("left_pattern.png", use_container_width=True)
     
     with col_center:
+        st.write("#  ")
         st.write("# Đăng ký để bắt đầu")
         
         st.text_input("Tên tài khoản (Username)", placeholder="Nhập tên tài khoản")
