@@ -55,7 +55,7 @@ if st.session_state.page == "Home":
     st.write("## BXH bài hát nổi bật *Tháng này*")
     
     # Tăng tỉ trọng cột trái (ảnh) lên 4.5 thay vì 3.5
-    bxh_l, bxh_r = st.columns([4.5, 5.5])
+    bxh_l, bxh_r = st.columns([4.8, 5.2])
 
     with bxh_l:
         # Ảnh sẽ tự động giãn ra để lấp đầy không gian cột mới
