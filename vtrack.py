@@ -102,4 +102,4 @@ elif st.session_state.page == "Thư viện":
     st.image("thu_vien_yeu_thich.png", use_container_width=True)
 
 elif st.session_state.page == "Đăng nhập":
-    st.image("wallpaper.jpg", use_container_width=True)
+    st.image("wallpaper.png", use_container_width=True)
