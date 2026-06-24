@@ -7,7 +7,7 @@ if "page" not in st.session_state:
     st.session_state.page = "Home"
 
 # --- 1. THANH ĐIỀU HƯỚNG MỎNG GỌN ---
-nav = st.columns([0.6, 0.4, 4.0, 1.1, 1.1, 1.1])
+nav = st.columns([0.6, 0.4, 4.0, 0.4, 1.1, 1.1])
 
 with nav[0]:
     st.image("logo.png", width=50)
@@ -16,7 +16,7 @@ with nav[1]:
 with nav[2]:
     st.text_input("Tìm kiếm...", label_visibility="collapsed")
 with nav[3]:
-    if st.button(" ☆", use_container_width=True): st.session_state.page = "Thư viện"
+    if st.button("☆", use_container_width=True): st.session_state.page = "Thư viện"
 with nav[4]:
     if st.button("Đăng nhập", use_container_width=True): st.session_state.page = "Đăng nhập"
 with nav[5]:
