@@ -7,7 +7,7 @@ if "page" not in st.session_state:
     st.session_state.page = "Home"
 
 # --- 1. THANH ĐIỀU HƯỚNG MỎNG GỌN ---
-nav = st.columns([0.6, 0.2, 4.0, 1.1, 1.1, 1.1])
+nav = st.columns([0.6, 0.4, 4.0, 1.1, 1.1, 1.1])
 
 with nav[0]:
     st.image("logo.png", width=50)
