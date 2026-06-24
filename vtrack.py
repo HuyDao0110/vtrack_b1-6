@@ -50,7 +50,23 @@ if st.session_state.page == "Home":
             st.image(file_name, use_container_width=True)
 
     # --- BXH NHẠC SĨ, NGHỆ SĨ TUẦN NÀY ---
-    st.write("## BXH Nhạc sĩ, Nghệ sĩ *Tuần này*")
+    header_col, buttons_col = st.columns([2, 1])
+
+    with header_col:
+        st.write("## BXH nhạc sĩ, nghệ sĩ *Tuần này*")
+    
+    with buttons_col:
+        # Chia nhỏ cụm nút bên phải
+        time_nav = st.columns(4)
+        # Tùy chỉnh để nút nằm gọn gàng, không bị dãn rộng ra
+        with time_nav[0]:
+            if st.button("Ngày", key="btn_day_final"): st.session_state.time_filter = "Ngày"
+        with time_nav[1]:
+            if st.button("Tuần", key="btn_week_final"): st.session_state.time_filter = "Tuần"
+        with time_nav[2]:
+            if st.button("Tháng", key="btn_month_final"): st.session_state.time_filter = "Tháng"
+        with time_nav[3]:
+            if st.button("Năm", key="btn_year_final"): st.session_state.time_filter = "Năm"
     st.image("BXH_nhac_si_nghe_si.png", use_container_width=True)
     # --- BXH BÀI HÁT NỔI BẬT THÁNG NÀY ---
     st.write("## BXH bài hát nổi bật *Tháng này*")
