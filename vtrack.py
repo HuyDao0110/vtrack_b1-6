@@ -1,28 +1,29 @@
 import streamlit as st
 
 # --- CẤU HÌNH TRANG WEB ---
-st.set_page_config(page_title="V-track", layout="wide")
+st.set_page_config(page_title="V-track - Ứng dụng nghe nhạc", layout="wide")
 
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
-# --- 1. THANH ĐIỀU HƯỚNG MỎNG GỌN ---
-nav = st.columns([0.6, 5.0, 1.1, 1.1, 1.1, 1.1])
+# --- 1. THANH ĐIỀU HƯỚNG ---
+nav = st.columns([1.5, 5, 2, 2])
 
 with nav[0]:
-    st.image("logo.png", width=50)
+    st.image("logo.png", width=90)
 
 with nav[1]:
     st.text_input("Tìm kiếm...", label_visibility="collapsed")
 
 with nav[2]:
-    if st.button("🏠 Home", use_container_width=True): st.session_state.page = "Home"
+    c1, c2 = st.columns(2)
+    if c1.button("🏠 Home", use_container_width=True): st.session_state.page = "Home"
+    if c2.button("📚 Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
+
 with nav[3]:
-    if st.button("📚 Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
-with nav[4]:
-    if st.button("Đăng nhập", use_container_width=True): st.session_state.page = "Đăng nhập"
-with nav[5]:
-    if st.button("Đăng ký", use_container_width=True): st.session_state.page = "Đăng ký"
+    c3, c4 = st.columns(2)
+    if c3.button("Đăng nhập", use_container_width=True): st.session_state.page = "Đăng nhập"
+    if c4.button("Đăng ký", use_container_width=True): st.session_state.page = "Đăng ký"
 
 st.write("---")
 
@@ -35,9 +36,11 @@ if st.session_state.page == "Home":
     st.write("## Nghệ sĩ phổ biến")
     art_cols = st.columns(5)
     artists = [
-        ("Sơn Tùng M-TP", "A1.png"), ("SOOBIN", "A2.png"), 
-        ("bùi trường linh", "A3.png"), ("Trang Pháp", "A4.png"), 
-        ("Xem thêm", "A5.png")
+        ("Sơn Tùng M-TP", "A1.jpg"),
+        ("SOOBIN", "A2.jpg"),
+        ("bùi trường linh", "A3.png"),
+        ("Trang Pháp", "A4.jpg"),
+        ("Xem thêm", "A5.jpg")
     ]
     for i, (name, file_name) in enumerate(artists):
         with art_cols[i]:
@@ -46,22 +49,19 @@ if st.session_state.page == "Home":
     # --- ALBUM NỔI BẬT ---
     st.write("## Album nổi bật")
     alb_cols = st.columns(6)
-    albums = ["B1.png", "B2.png", "B3.png", "B4.png", "B5.png", "B6.png"]
+    albums = ["B1.jpg", "B2.jpg", "B3.jpg", "B4.jpg", "B5.jpg", "B6.jpg"]
     for i, file_name in enumerate(albums):
         with alb_cols[i]:
             st.image(file_name, use_container_width=True)
 
     # --- BXH BÀI HÁT NỔI BẬT THÁNG NÀY ---
     st.write("## BXH bài hát nổi bật *Tháng này*")
-    
     bxh_l, bxh_r = st.columns([3.5, 6.5])
     
     with bxh_l:
-        # Đã cập nhật đúng ảnh hạng 1 là come_my_way.png theo yêu cầu của bạn
         st.image("come_my_way.png", use_container_width=True)
             
     with bxh_r:
-        # Danh sách bài hát chuẩn của Huy
         songs = [
             {"rank": "2", "title": "Em", "artist": "Binz"},
             {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
@@ -74,28 +74,26 @@ if st.session_state.page == "Home":
             {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
         ]
         
-        # Bắt buộc gom vào container để kiểm soát khoảng cách gap="small" giúp khít dòng
-        with st.container(border=False):
-            for s in songs:
-                # Chia cột tỉ lệ 8.5 và 1.5 để đẩy tên ca sĩ sát lề phải nhất có thể
-                sl, sr = st.columns([8.5, 1.5])
-                
-                # Căn lề trái mặc định cho tên bài hát
-                sl.write(f"{s['rank']}. {s['title']}")
-                
-                # Căn lề phải cho nghệ sĩ bằng cách dùng cú pháp Markdown text-align
-                sr.write(f"<p style='text-align: right; margin: 0; font-weight: bold;'>{s['artist']}</p>", unsafe_allow_html=True)
-                
-                # Đường gạch ngang mảnh liền mạch của Streamlit nằm ngay dưới mỗi hàng
-                st.markdown("---")
+        # Khởi tạo chuỗi Markdown Table rỗng, định dạng cột 1 căn trái, cột 2 căn phải
+        bxh_pure_markdown = "| | |\n| :--- | ---: |\n"
+        
+        # Duyệt qua danh sách để cộng dồn vào bảng liên tục
+        for s in songs:
+            bxh_pure_markdown += f"| {s['rank']}. {s['title']} | **{s['artist']}** |\n"
+            
+        # Xuất ra giao diện bằng một lệnh duy nhất để triệt tiêu toàn bộ khoảng trống thừa
+        st.markdown(bxh_pure_markdown)
+
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
     st.write("---")
     l, r = st.columns([4, 6])
-    with l: st.image("trang_phap.png", use_container_width=True)
+    with l:
+        st.image("A4.jpg", use_container_width=True)
     with r:
         st.write("# Trang Pháp và hành trình")
         st.write("▶ Phát tất cả | 7 bài hát")
 
 elif st.session_state.page == "Thư viện":
     st.image("thu_vien_yeu_thich.png", use_container_width=True)
+    if st.button("Trở về"): st.session_state.page = "Home"
