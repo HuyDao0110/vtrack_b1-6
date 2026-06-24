@@ -224,13 +224,12 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
     
     # 1. PHẦN ĐẦU: Ảnh bìa & Thông tin
-l, r = st.columns([3, 7])
+    l, r = st.columns([3, 7])
     
     with l:
         st.image("trang_phap.png", use_container_width=True)
     
     with r:
-        # Tiêu đề lớn
         st.markdown("# Trang Pháp và hành trình trong CHENGFENG 2026")
         
         # Phần nút "Phát danh sách" và "Thời lượng"
