@@ -232,7 +232,7 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
         l, r = st.columns([4, 6])
         
         with l:
-            st.image("trang_phap.png", use_container_width=True)
+            st.image("trang_phap.png", width=400)
             
         with r:
             st.markdown("# Trang Pháp và hành trình trong CHENGFENG 2026")
