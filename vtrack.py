@@ -39,6 +39,7 @@ if st.session_state.page == "Home":
     # Hiển thị lời chào
     st.markdown("## Nghe gì hôm nay, User?")
     st.write(f"#####       Hôm nay là **{date_str}**")
+    if st.button("Thông tin nghệ sĩ (Xử lý phần giao diện)", use_container_width=True): st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
     st.image("best_notification.png", use_container_width=True)
 
     # --- NGHỆ SĨ PHỔ BIẾN ---
@@ -217,6 +218,43 @@ elif st.session_state.page == "Ngôn ngữ":
     for i, lang in enumerate(languages_list):
         with cols[i % num_cols]:
             st.write(f"{lang}")
+
+elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
+    # Nút quay lại
+    if st.button("⬅ Quay lại"): st.session_state.page = "Home"
+    
+    # 1. PHẦN ĐẦU: Ảnh bìa & Thông tin
+    l, r = st.columns([0.4, 0.6]) # Tỉ lệ cột phù hợp với hình ảnh
+    with l:
+        st.image("trang_phap.png", use_container_width=True)
+    with r:
+        st.write("# Trang Pháp và hành trình trong CHENGFENG 2026")
+        # Sử dụng container để các nút nằm cùng hàng
+        btn_c1, btn_c2 = st.columns([0.3, 0.7])
+        btn_c1.button("▶ Phát tất cả", use_container_width=True)
+        st.write("7 bài hát • 24 phút 42 giây")
+        st.write("➕  ... (Thêm/Tùy chọn)")
+
+    # 2. PHẦN GIỮA: Danh sách bài hát
+    st.write("---")
+    songs = [
+        "1. MOONLIGHT", "2. Nghệ Thuật Gia Vĩ Đại", "3. Là Anh", 
+        "4. Ego-holic", "5. Nghịch Chiến", "6. Sổ Tay Rèn Luyện Thanh Xuân", "7. DNA"
+    ]
+    for song in songs:
+        st.write(f"#### {song}")
+        st.markdown("<hr style='margin: 5px 0px;'>", unsafe_allow_html=True)
+
+    # 3. PHẦN DƯỚI: Tiểu sử
+    st.write("### Tiểu sử")
+    st.write("Trang Pháp (Nguyễn Thùy Trang, sinh năm 1989) là một nữ nghệ sĩ toàn năng...")
+    
+    # 4. PHẦN: Có thể bạn thích
+    st.write("## Có thể bạn thích")
+    rec_cols = st.columns(4)
+    rec_images = ["ChiPu.png", "Suni.png", "LonelyDance.png", "Next.png"]
+    for i, img in enumerate(rec_images):
+        rec_cols[i].image(img, use_container_width=True)
 
 # Thêm một chút khoảng cách phía dưới
 st.write("---")
