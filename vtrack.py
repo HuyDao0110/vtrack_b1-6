@@ -3,32 +3,19 @@ import streamlit as st
 # --- CẤU HÌNH TRANG WEB ---
 st.set_page_config(page_title="V-track - Ứng dụng nghe nhạc", layout="wide")
 
-# Inject CSS để triệt tiêu khoảng cách mặc định của Streamlit trong khu vực BXH
-st.html("""
-    <style>
-        [data-testid="stVerticalBlock"] {
-            gap: 0rem !important;
-        }
-    </style>
-""")
-
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
 # --- 1. THANH ĐIỀU HƯỚNG ---
 nav = st.columns([1.5, 5, 2, 2])
-
 with nav[0]:
     st.image("logo.png", width=90)
-
 with nav[1]:
     st.text_input("Tìm kiếm...", label_visibility="collapsed")
-
 with nav[2]:
     c1, c2 = st.columns(2)
     if c1.button("🏠 Home", use_container_width=True): st.session_state.page = "Home"
     if c2.button("📚 Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
-
 with nav[3]:
     c3, c4 = st.columns(2)
     if c3.button("Đăng nhập", use_container_width=True): st.session_state.page = "Đăng nhập"
@@ -41,16 +28,10 @@ if st.session_state.page == "Home":
     st.write("# Nghe gì hôm nay, User?")
     st.image("best_notification.png", use_container_width=True)
 
-    # --- NGHỆ SĨ PHỔ BIẾI ---
+    # --- NGHỆ SĨ PHỔ BIẾN ---
     st.write("## Nghệ sĩ phổ biến")
     art_cols = st.columns(5)
-    artists = [
-        ("Sơn Tùng M-TP", "A1.jpg"),
-        ("SOOBIN", "A2.jpg"),
-        ("bùi trường linh", "A3.png"),
-        ("Trang Pháp", "A4.jpg"),
-        ("Xem thêm", "A5.jpg")
-    ]
+    artists = [("Sơn Tùng M-TP", "A1.jpg"), ("SOOBIN", "A2.jpg"), ("bùi trường linh", "A3.png"), ("Trang Pháp", "A4.jpg"), ("Xem thêm", "A5.jpg")]
     for i, (name, file_name) in enumerate(artists):
         with art_cols[i]:
             st.image(file_name, caption=name, use_container_width=True)
@@ -82,20 +63,17 @@ if st.session_state.page == "Home":
             {"rank": "9", "title": "Tây Thi", "artist": "RPT MCK"},
             {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
         ]
-        
-        # Streamlit thuần túy lặp qua từng bài viết dòng kẻ sát sạt
         for s in songs:
             sl, sr = st.columns([8, 2])
             sl.write(f"{s['rank']}. {s['title']}")
-            sr.write(f"<p style='text-align: right; margin: 0; font-weight: bold;'>{s['artist']}</p>", unsafe_allow_html=True)
+            sr.write(f"**{s['artist']}**")
             st.write("---")
 
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
     st.write("---")
     l, r = st.columns([4, 6])
-    with l:
-        st.image("A4.jpg", use_container_width=True)
+    with l: st.image("A4.jpg", use_container_width=True)
     with r:
         st.write("# Trang Pháp và hành trình")
         st.write("▶ Phát tất cả | 7 bài hát")
