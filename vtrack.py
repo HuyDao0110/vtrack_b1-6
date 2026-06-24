@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 # --- CẤU HÌNH TRANG WEB ---
 st.set_page_config(page_title="YTrack", layout="wide")
@@ -57,25 +58,41 @@ if st.session_state.page == "Home":
     bxh_l, bxh_r = st.columns([3.5, 6.5])
     
     with bxh_l:
-        # Bạn nhớ lưu ảnh bìa bài Come My Way tên là "BXH_bai_hat.png" trong thư mục nhé
-        st.image("BXH_bai_hat.png", use_container_width=True)
+        # Sử dụng lại file ảnh gốc của bạn để không bị lỗi tệp tin
+        st.image("BXH_nhac_si_nghe_si.png", use_container_width=True)
             
     with bxh_r:
-        # Sử dụng Markdown định dạng bảng thuần túy để tối ưu khoảng cách khít nhau
-        bxh_content = """
-| # | Tiêu đề | Nghệ sĩ |
-| :--- | :--- | :--- |
-| **2** | **Em** | Binz |
-| **3** | **Nếu như ta chẳng còn** | RPT MCK |
-| **4** | **IDK** | RPT MCK |
-| **5** | **Nguyễn Văn Mười** | RPT MCK |
-| **6** | **người còn thương em không** | Tóc Tiên |
-| **7** | **LÁ NGỌC CÀNH VÀNG** | Kiều Anh |
-| **8** | **Có công mài “sắc” Afrobeats** | Ngô Lan Hương |
-| **9** | **Tây Thi** | RPT MCK |
-| **10** | **toidaidot** | GREY D |
-"""
-        st.markdown(bxh_content)
+        # Tạo dữ liệu bảng xếp hạng từ vị trí số 2 đến số 10
+        data = {
+            "#": ["2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            "Tiêu đề": [
+                "Em", 
+                "Nếu như ta chẳng còn", 
+                "IDK", 
+                "Nguyễn Văn Mười", 
+                "người còn thương em không", 
+                "LÁ NGỌC CÀNH VÀNG", 
+                "Có công mài “sắc” Afrobeats", 
+                "Tây Thi", 
+                "toidaidot"
+            ],
+            "Nghệ sĩ": [
+                "Binz", 
+                "RPT MCK", 
+                "RPT MCK", 
+                "RPT MCK", 
+                "Tóc Tiên", 
+                "Kiều Anh", 
+                "Ngô Lan Hương", 
+                "RPT MCK", 
+                "GREY D"
+            ]
+        }
+        
+        df = pd.DataFrame(data)
+        
+        # Hiển thị bằng bảng thuần túy, vừa khít khung, khoảng cách cực kỳ tối ưu
+        st.dataframe(df, use_container_width=True, hide_index=True)
 
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
