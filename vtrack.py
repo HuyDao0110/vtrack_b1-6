@@ -1,8 +1,7 @@
 import streamlit as st
-import pandas as pd
 
 # --- CẤU HÌNH TRANG WEB ---
-st.set_page_config(page_title="YTrack", layout="wide")
+st.set_page_config(page_title="V-track", layout="wide")
 
 if "page" not in st.session_state:
     st.session_state.page = "Home"
@@ -17,9 +16,9 @@ with nav[1]:
     st.text_input("Tìm kiếm...", label_visibility="collapsed")
 
 with nav[2]:
-    if st.button("🏠 Home", use_container_width=True): st.session_state.page = "Home"
+    if st.button("Home", use_container_width=True): st.session_state.page = "Home"
 with nav[3]:
-    if st.button("📚 Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
+    if st.button("Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
 with nav[4]:
     if st.button("Đăng nhập", use_container_width=True): st.session_state.page = "Đăng nhập"
 with nav[5]:
@@ -58,41 +57,35 @@ if st.session_state.page == "Home":
     bxh_l, bxh_r = st.columns([3.5, 6.5])
     
     with bxh_l:
-        # Sử dụng đúng tên file ảnh hiển thị bục số 1, 2, 3 của bạn
-        st.image("come_my_way.png", use_container_width=True)
+        # Sử dụng đúng tên file ảnh hiển thị bục số 1, 2, 3 của Huy
+        st.image("best_notification.png", use_container_width=True)
             
     with bxh_r:
-        # Chuẩn hóa dữ liệu bảng từ vị trí số 2 đến số 10
-        bxh_data = {
-            "#": [2, 3, 4, 5, 6, 7, 8, 9, 10],
-            "Tiêu đề": [
-                "Em", 
-                "Nếu như ta chẳng còn", 
-                "IDK", 
-                "Nguyễn Văn Mười", 
-                "người còn thương em không", 
-                "LÁ NGỌC CÀNH VÀNG", 
-                "Có công mài “sắc” Afrobeats", 
-                "Tây Thi", 
-                "toidaidot"
-            ],
-            "Nghệ sĩ": [
-                "Binz", 
-                "RPT MCK", 
-                "RPT MCK", 
-                "RPT MCK", 
-                "Tóc Tiên", 
-                "Kiều Anh", 
-                "Ngô Lan Hương", 
-                "RPT MCK", 
-                "GREY D"
+        # Dùng container bao quanh vòng lặp giúp triệt tiêu khoảng trống thừa giữa các dòng st.columns
+        with st.container():
+            # Cập nhật danh sách chuẩn 100% theo thiết kế ảnh 1 của Huy
+            songs = [
+                {"rank": "2", "title": "Em", "artist": "Binz"},
+                {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
+                {"rank": "4", "title": "IDK", "artist": "RPT MCK"},
+                {"rank": "5", "title": "Nguyễn Văn Mười", "artist": "RPT MCK"},
+                {"rank": "6", "title": "người còn thương em không", "artist": "Tóc Tiên"},
+                {"rank": "7", "title": "LÁ NGỌC CÀNH VÀNG", "artist": "Kiều Anh"},
+                {"rank": "8", "title": "Có công mài “sắc” Afrobeats", "artist": "Ngô Lan Hương"},
+                {"rank": "9", "title": "Tây Thi", "artist": "RPT MCK"},
+                {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
             ]
-        }
-        
-        df = pd.DataFrame(bxh_data)
-        
-        # Hiển thị bảng thuần túy, tự động căn khoảng cách khít đều và có viền kẻ ô đẹp mắt
-        st.dataframe(df, use_container_width=True, hide_index=True)
+            
+            for s in songs:
+                # Chia tỉ lệ cột 7.5 và 2.5 để đẩy tên nghệ sĩ sát về lề phải
+                sl, sr = st.columns([7.5, 2.5])
+                
+                # Hiển thị nội dung
+                sl.write(f"{s['rank']}. {s['title']}")
+                sr.write(f"**{s['artist']}**")
+                
+                # Đường gạch ngang mảnh phân cách khít rịt giữa các bài hát
+                st.write("---")
 
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
