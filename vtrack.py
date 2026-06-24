@@ -100,7 +100,3 @@ elif st.session_state.page == "Nghệ sĩ":
 
 elif st.session_state.page == "Thư viện":
     st.image("thu_vien_yeu_thich.png", use_container_width=True)
-
-elif st.session_state.page == "Đăng nhập":
-    st.sidebar.image("wallpaper.png", use_container_width=True)
-    st.sidebar.write("Chào mừng Huy đến với V-track!")
