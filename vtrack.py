@@ -120,4 +120,4 @@ elif st.session_state.page == "Đăng nhập":
             st.session_state.page = "Đăng ký"
             
         # Để trang trí, bạn có thể chèn ảnh wallpaper ở trên cùng hoặc dưới cùng cột center_col
-        st.image("wallpaper.jpg", use_container_width=True)
+        st.image("wallpaper.png", use_container_width=True)
