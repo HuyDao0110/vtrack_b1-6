@@ -229,7 +229,7 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
     # Sử dụng container để bọc toàn bộ nội dung trang nghệ sĩ
     with st.container():
         # 1. BỐ CỤC CHÍNH (Ảnh và thông tin nghệ sĩ)
-        l, r = st.columns([4, 6])
+        l, r = st.columns([2, 1])
         
         with l:
             st.image("trang_phap.png", width=5000)
