@@ -254,7 +254,7 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
     # 4. PHẦN: Có thể bạn thích
     st.write("## Có thể bạn thích")
     rec_cols = st.columns(4)
-    rec_images = ["ChiPu.png", "Suni.png", "LonelyDance.png", "Next.png"]
+    rec_images = ["C1.png", "C2.png", "C3.png", "C4.png"]
     for i, img in enumerate(rec_images):
         rec_cols[i].image(img, use_container_width=True)
 
