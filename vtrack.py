@@ -7,37 +7,34 @@ st.set_page_config(page_title="YTrack - Ứng dụng nghe nhạc", layout="wide"
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
-# --- HÀM THÔNG MINH TỰ ĐỘNG KHỚP FILE (Bất chấp viết hoa/thường) ---
+# --- HÀM TỰ ĐỘNG KHỚP FILE (Bất chấp viết hoa/thường) ---
 def lay_anh(ten_file_goc):
-    # Tìm xem trong thư mục có file nào trùng tên (không phân biệt hoa thường) không
     ten_thap = ten_file_goc.lower()
     if os.path.exists(ten_file_goc):
         return ten_file_goc
-    # Quét phòng hờ trường hợp file trên GitHub bị đổi thành chữ HOA (.PNG hoặc .JPG)
     for f in os.listdir("."):
         if f.lower() == ten_thap:
             return f
     return ten_file_goc
 
-# --- 1. THANH ĐIỀU HƯỚNG (Ép mỏng tối đa, fix lỗi logo to) ---
-# Đặt cột đầu tiên là 0.5 để ép khung logo nhỏ lại, không làm phình menu
-nav = st.columns([0.5, 6.0, 1.7, 1.8])
+# --- 1. THANH ĐIỀU HƯỚNG SIÊU MỎNG ---
+# Thu nhỏ cột tìm kiếm một chút và gom nút để không sinh khoảng đệm dọc dư thừa
+nav = st.columns([0.6, 4.6, 1.2, 1.2, 1.2, 1.2])
 
 with nav[0]:
-    st.image(lay_anh("logo.png"), width=60) # Ép logo về hẳn bản nhỏ gọn
+    st.image(lay_anh("logo.png"), width=55) # Logo nhỏ tinh tế
 
 with nav[1]:
     st.text_input("Tìm kiếm...", label_visibility="collapsed")
 
 with nav[2]:
-    c1, c2 = st.columns(2)
-    if c1.button("🏠 Home", use_container_width=True): st.session_state.page = "Home"
-    if c2.button("📚 Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
-
+    if st.button("🏠 Home", use_container_width=True): st.session_state.page = "Home"
 with nav[3]:
-    c3, c4 = st.columns(2)
-    if c3.button("Đăng nhập", use_container_width=True): st.session_state.page = "Đăng nhập"
-    if c4.button("Đăng ký", use_container_width=True): st.session_state.page = "Đăng ký"
+    if st.button("📚 Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
+with nav[4]:
+    if st.button("Đăng nhập", use_container_width=True): st.session_state.page = "Đăng nhập"
+with nav[5]:
+    if st.button("Đăng ký", use_container_width=True): st.session_state.page = "Đăng ký"
 
 st.write("---")
 
@@ -69,23 +66,34 @@ if st.session_state.page == "Home":
         with alb_cols[i]:
             st.image(lay_anh(file_name), use_container_width=True)
 
-    # --- BXH BÀI HÁT NỔI BẬT THÁNG NÀY ---
+    # --- BXH BÀI HÁT NỔI BẬT THÁNG NÀY (ĐỦ TỪ 1 ĐẾN 10) ---
     st.write("## BXH bài hát nổi bật *Tháng này*")
     bxh_l, bxh_r = st.columns([3.5, 6.5])
     with bxh_l:
         st.image(lay_anh("come_my_way.png"), use_container_width=True)
             
     with bxh_r:
+        # Danh sách đã điền đầy đủ từ hạng 1 đến hạng 10
         songs = [
+            {"rank": "1", "title": "Come My Way", "artist": "Nghệ sĩ"},
             {"rank": "2", "title": "Em", "artist": "Binz"},
             {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
             {"rank": "4", "title": "IDK", "artist": "RPT MCK"},
-            {"rank": "5", "title": "Nguyễn Văn Mười", "artist": "RPT MCK"}
+            {"rank": "5", "title": "Nguyễn Văn Mười", "artist": "RPT MCK"},
+            {"rank": "6", "title": "người còn thương em không", "artist": "Tóc Tiên"},
+            {"rank": "7", "title": "LÁ NGỌC CÀNH VÀNG", "artist": "Kiều Anh"},
+            {"rank": "8", "title": "Có công mài “sắc” Afrobeats", "artist": "Ngô Lan Hương"},
+            {"rank": "9", "title": "Tây Thi, "artist": "RPT MCK"},
+            {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
         ]
         for s in songs:
             sl, sr = st.columns([8, 2])
-            sl.write(f"{s['rank']}. {s['title']}")
-            sr.write(f"**{s['artist']}**")
+            if s['rank'] == "1":
+                sl.write(f"**{s['rank']}. {s['title']}**")
+                sr.write(f"**{s['artist']}**")
+            else:
+                sl.write(f"{s['rank']}. {s['title']}")
+                sr.write(f"**{s['artist']}**")
 
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
