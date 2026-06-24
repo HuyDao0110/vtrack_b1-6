@@ -1,7 +1,7 @@
 import streamlit as st
 
 # --- CẤU HÌNH TRANG WEB ---
-st.set_page_config(page_title="V-track", layout="wide")
+st.set_page_config(page_title="YTrack", layout="wide")
 
 if "page" not in st.session_state:
     st.session_state.page = "Home"
@@ -57,10 +57,10 @@ if st.session_state.page == "Home":
     bxh_l, bxh_r = st.columns([3.5, 6.5])
     
     with bxh_l:
-        # Nhập chuẩn tên file ảnh bìa bạn muốn hiển thị ở đây
         st.image("come_my_way.png", use_container_width=True)
             
     with bxh_r:
+        # Danh sách bài hát chuẩn 100% của Huy
         songs = [
             {"rank": "2", "title": "Em", "artist": "Binz"},
             {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
@@ -73,13 +73,15 @@ if st.session_state.page == "Home":
             {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
         ]
         
+        # Xây dựng chuỗi văn bản liên tục để ép Streamlit không tự động chèn khoảng trống lớn
+        bxh_markdown = ""
         for s in songs:
-            # Sử dụng đúng cấu trúc st.columns chia hàng của bạn
-            sl, sr = st.columns([8, 2])
-            
-            # Bí quyết: Gộp đường kẻ ngang '\n\n---' vào chung dòng text để triệt tiêu khoảng cách thừa
-            sl.write(f"{s['rank']}. {s['title']}\n\n---")
-            sr.write(f"**{s['artist']}**\n\n---")
+            # Tạo khoảng trống vô hình đẩy tên ca sĩ về phía bên phải
+            spacing = "&nbsp;" * (90 - len(s['title']) * 2)
+            bxh_markdown += f"{s['rank']}. {s['title']}{spacing}**{s['artist']}**\n\n---\n\n"
+        
+        # Hiển thị toàn bộ danh sách khít rịt bằng 1 lệnh duy nhất
+        st.markdown(bxh_markdown, unsafe_allow_html=True)
 
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
