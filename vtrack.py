@@ -247,17 +247,17 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
             st.write("➕ ... (Thêm/Tùy chọn)")
 
     # 2. DANH SÁCH BÀI HÁT (Sử dụng CSS để đường kẻ sắc nét hơn)
-    st.write("---")
-    songs = [
-        "1. MOONLIGHT", "2. Nghệ Thuật Gia Vĩ Đại", "3. Là Anh", 
-        "4. Ego-holic", "5. Nghịch Chiến", "6. Sổ Tay Rèn Luyện Thanh Xuân", "7. DNA"
-    ]
-    
-    for song in songs:
-        # Dùng markdown với h3 để font chữ cân đối với tiêu đề
-        st.markdown(f"### {song}")
-        # Đường kẻ ngang tối màu, nằm sát dưới mỗi bài hát
-        st.markdown("<hr style='margin-top: 5px; margin-bottom: 15px; border: 0.5px solid #333;'>", unsafe_allow_html=True)
+            st.write("---")
+            songs = [
+                "1. MOONLIGHT", "2. Nghệ Thuật Gia Vĩ Đại", "3. Là Anh", 
+                "4. Ego-holic", "5. Nghịch Chiến", "6. Sổ Tay Rèn Luyện Thanh Xuân", "7. DNA"
+            ]
+            
+            for song in songs:
+                # Dùng markdown với h3 để font chữ cân đối với tiêu đề
+                st.markdown(f"### {song}")
+                # Đường kẻ ngang tối màu, nằm sát dưới mỗi bài hát
+                st.markdown("<hr style='margin-top: 5px; margin-bottom: 15px; border: 0.5px solid #333;'>", unsafe_allow_html=True)
 
     # 3. PHẦN DƯỚI: Tiểu sử
     st.write("### Tiểu sử")
