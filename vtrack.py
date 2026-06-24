@@ -234,11 +234,8 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
                 st.button("▶ Phát danh sách")
             with c_info:
                 st.write("7 bài hát • 24 phút 42 giây")
-            
-            st.write("➕ ... (Thêm/Tùy chọn)")
 
     # 2. DANH SÁCH BÀI HÁT (Sử dụng CSS để đường kẻ sắc nét hơn)
-            st.write("---")
             songs = [
                 "1. MOONLIGHT", "2. Nghệ Thuật Gia Vĩ Đại", "3. Là Anh", 
                 "4. Ego-holic", "5. Nghịch Chiến", "6. Sổ Tay Rèn Luyện Thanh Xuân", "7. DNA"
@@ -247,12 +244,12 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
             for song in songs:
                 # Dùng markdown với h3 để font chữ cân đối với tiêu đề
                 st.markdown(f"{song}")
-                # Đường kẻ ngang tối màu, nằm sát dưới mỗi bài hát
-                #st.markdown("<hr style='margin-top: 0.3px; margin-bottom: 0.3px; border: 0.5px solid #333;'>", unsafe_allow_html=True)
 
     # 3. PHẦN DƯỚI: Tiểu sử
     st.write("### Tiểu sử")
-    st.write("Trang Pháp (Nguyễn Thùy Trang, sinh năm 1989) là một nữ nghệ sĩ toàn năng ...")
+    st.write("Trang Pháp (Nguyễn Thùy Trang, sinh năm 1989) là một nữ nghệ sĩ toàn năng của showbiz Việt, nổi bật với vai trò ca sĩ, nhạc sĩ và nhà sản xuất âm nhạc.")
+    st.write("Sau một thời gian lui về hậu trường làm sản xuất, cô đã có màn tái xuất bùng nổ tại chương trình Chị Đẹp Đạp Gió Rẽ Sóng 2023. ")
+    st.write("Bằng các kỹ năng âm nhạc toàn diện, cô xuất sắc giành ngôi vị Quán quân, khẳng định vị thế của một nghệ có tư duy văn minh và tầm ảnh hưởng lớn trong làng nhạc Việt hiện đại.")
     
     # 4. PHẦN: Có thể bạn thích
     st.write("## Có thể bạn thích")
