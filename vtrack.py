@@ -253,7 +253,7 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
     
     # 4. PHẦN: Có thể bạn thích
     st.write("## Có thể bạn thích")
-    c1, c2, c3, c4 = st.columns([1, 1, 1.8, 1])
+    c1, c2, c3, c4 = st.columns([1, 1, 2, 1])
 rec_images = ["C1.png", "C2.png", "C3.png", "C4.png"]
 
 cols = [c1, c2, c3, c4]
