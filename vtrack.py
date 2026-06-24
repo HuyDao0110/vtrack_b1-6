@@ -185,3 +185,28 @@ elif st.session_state.page == "Đăng ký":
             
     with col_right:
         st.image("right_pattern.png", use_container_width=True)
+
+elif st.session_state.page == "Ngôn ngữ":
+    languages_list = [
+        "Ả Rập", "Azerbaijan", "Bengali", "Bulgaria", "Bồ Đào Nha",
+        "Czech", "Đan Mạch", "Đức", "English", "Español",
+        "Estonia", "Phần Lan", "Français", "Hy Lạp", "Hungary",
+        "Indonesia", "Ấn Độ", "Iceland", "Italino", "Hebrew",
+        "Nhật Bản", "Hàn Quốc", "Lithuania", "Latvia", "Mã Lai",
+        "Hà Lan", "Na Uy", "Ba Lan", "Romania", "Nga",
+        "Thụy Điển", "Thái Lan", "Thổ Nhĩ Kỳ", "Ukraina", "Tiếng Việt",
+        "Trung Quốc", "Hồng Kông"
+    ]
+    
+    # Chia thành 5 cột
+    num_cols = 5
+    cols = st.columns(num_cols)
+    
+    # Phân bổ danh sách vào từng cột
+    # Sử dụng toán tử chia lấy dư để rải đều ngôn ngữ vào các cột
+    for i, lang in enumerate(languages_list):
+        with cols[i % num_cols]:
+            st.write(f"• {lang}")
+
+# Thêm một chút khoảng cách phía dưới
+st.write("---")
