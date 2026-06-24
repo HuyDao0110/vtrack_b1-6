@@ -16,9 +16,9 @@ with nav[1]:
     st.text_input("Tìm kiếm...", label_visibility="collapsed")
 
 with nav[2]:
-    if st.button("🏠 Home", use_container_width=True): st.session_state.page = "Home"
+    if st.button("🏠", use_container_width=True): st.session_state.page = "Home"
 with nav[3]:
-    if st.button("📚 Thư viện", use_container_width=True): st.session_state.page = "Thư viện"
+    if st.button(" ☆", use_container_width=True): st.session_state.page = "Thư viện"
 with nav[4]:
     if st.button("Đăng nhập", use_container_width=True): st.session_state.page = "Đăng nhập"
 with nav[5]:
