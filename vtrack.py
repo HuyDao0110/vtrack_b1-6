@@ -38,7 +38,7 @@ if st.session_state.page == "Home":
     
     # Hiển thị lời chào
     st.markdown("## Nghe gì hôm nay, User?")
-    st.write(f"### Hôm nay là **{date_str}**")
+    st.write(f"##### Hôm nay là **{date_str}**")
     st.image("best_notification.png", use_container_width=True)
 
     # --- NGHỆ SĨ PHỔ BIẾN ---
