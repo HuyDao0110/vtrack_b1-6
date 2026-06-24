@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 # --- CẤU HÌNH TRANG WEB ---
 st.set_page_config(page_title="YTrack - Ứng dụng nghe nhạc", layout="wide")
@@ -6,12 +7,24 @@ st.set_page_config(page_title="YTrack - Ứng dụng nghe nhạc", layout="wide"
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
-# --- 1. THANH ĐIỀU HƯỚNG (Ép mỏng chiều dọc, logo nhỏ gọn hẳn lại) ---
-# Chỉnh cột logo xuống 0.8 để ép ảnh nhỏ lại, tăng cột tìm kiếm lên để giãn ngang
-nav = st.columns([0.8, 5.7, 1.7, 1.8])
+# --- HÀM THÔNG MINH TỰ ĐỘNG KHỚP FILE (Bất chấp viết hoa/thường) ---
+def lay_anh(ten_file_goc):
+    # Tìm xem trong thư mục có file nào trùng tên (không phân biệt hoa thường) không
+    ten_thap = ten_file_goc.lower()
+    if os.path.exists(ten_file_goc):
+        return ten_file_goc
+    # Quét phòng hờ trường hợp file trên GitHub bị đổi thành chữ HOA (.PNG hoặc .JPG)
+    for f in os.listdir("."):
+        if f.lower() == ten_thap:
+            return f
+    return ten_file_goc
+
+# --- 1. THANH ĐIỀU HƯỚNG (Ép mỏng tối đa, fix lỗi logo to) ---
+# Đặt cột đầu tiên là 0.5 để ép khung logo nhỏ lại, không làm phình menu
+nav = st.columns([0.5, 6.0, 1.7, 1.8])
 
 with nav[0]:
-    st.image("logo.png", width=65) # Hạ hẳn width xuống 65 để thanh menu siêu mỏng
+    st.image(lay_anh("logo.png"), width=60) # Ép logo về hẳn bản nhỏ gọn
 
 with nav[1]:
     st.text_input("Tìm kiếm...", label_visibility="collapsed")
@@ -32,36 +45,35 @@ st.write("---")
 if st.session_state.page == "Home":
     st.write("# Nghe gì hôm nay, User?")
     
-    st.image("best_notification.png", use_container_width=True)
+    st.image(lay_anh("best_notification.png"), use_container_width=True)
 
     # --- NGHỆ SĨ PHỔ BIẾN ---
     st.write("## Nghệ sĩ phổ biến")
     art_cols = st.columns(5)
     artists = [
-        ("Sơn Tùng M-TP", "A1.jpg"),
-        ("SOOBIN", "A2.jpg"),
+        ("Sơn Tùng M-TP", "A1.png"),
+        ("SOOBIN", "A2.png"),
         ("bùi trường linh", "A3.png"),
-        ("Trang Pháp", "A4.jpg"),
-        ("Xem thêm", "A5.jpg")
+        ("Trang Pháp", "A4.png"),
+        ("Xem thêm", "A5.png")
     ]
     for i, (name, file_name) in enumerate(artists):
         with art_cols[i]:
-            st.image(file_name, caption=name, use_container_width=True)
+            st.image(lay_anh(file_name), caption=name, use_container_width=True)
 
     # --- ALBUM NỔI BẬT ---
     st.write("## Album nổi bật")
     alb_cols = st.columns(6)
-    albums = ["B1.jpg", "B2.jpg", "B3.jpg", "B4.jpg", "B5.jpg", "B6.jpg"]
+    albums = ["B1.png", "B2.png", "B3.png", "B4.png", "B5.png", "B6.png"]
     for i, file_name in enumerate(albums):
         with alb_cols[i]:
-            st.image(file_name, use_container_width=True)
+            st.image(lay_anh(file_name), use_container_width=True)
 
     # --- BXH BÀI HÁT NỔI BẬT THÁNG NÀY ---
     st.write("## BXH bài hát nổi bật *Tháng này*")
     bxh_l, bxh_r = st.columns([3.5, 6.5])
     with bxh_l:
-        # CHÚ Ý: Đã sửa thành đúng đuôi "come_my_way.jpg" để không bị lỗi sập app nữa
-        st.image("come_my_way.jpg", use_container_width=True)
+        st.image(lay_anh("come_my_way.png"), use_container_width=True)
             
     with bxh_r:
         songs = [
@@ -80,11 +92,11 @@ elif st.session_state.page == "Nghệ sĩ":
     st.write("---")
     l, r = st.columns([4, 6])
     with l:
-        st.image("trang_phap.jpg", use_container_width=True)
+        st.image(lay_anh("trang_phap.png"), use_container_width=True)
     with r:
         st.write("# Trang Pháp và hành trình")
         st.write("▶ Phát tất cả | 7 bài hát")
 
 elif st.session_state.page == "Thư viện":
-    st.image("thu_vien_yeu_thich.png", use_container_width=True)
+    st.image(lay_anh("thu_vien_yeu_thich.png"), use_container_width=True)
     if st.button("Trở về"): st.session_state.page = "Home"
