@@ -60,7 +60,6 @@ if st.session_state.page == "Home":
         st.image("come_my_way.png", use_container_width=True)
             
     with bxh_r:
-        # Danh sách bài hát chuẩn 100% của Huy
         songs = [
             {"rank": "2", "title": "Em", "artist": "Binz"},
             {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
@@ -73,15 +72,17 @@ if st.session_state.page == "Home":
             {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
         ]
         
-        # Xây dựng chuỗi văn bản liên tục để ép Streamlit không tự động chèn khoảng trống lớn
-        bxh_markdown = ""
         for s in songs:
-            # Tạo khoảng trống vô hình đẩy tên ca sĩ về phía bên phải
-            spacing = "&nbsp;" * (90 - len(s['title']) * 2)
-            bxh_markdown += f"{s['rank']}. {s['title']}{spacing}**{s['artist']}**\n\n---\n\n"
-        
-        # Hiển thị toàn bộ danh sách khít rịt bằng 1 lệnh duy nhất
-        st.markdown(bxh_markdown, unsafe_allow_html=True)
+            # Chia cột để căn lề trái và phải
+            col1, col2 = st.columns([0.7, 0.3])
+            with col1:
+                st.write(f"{s['rank']}. {s['title']}")
+            with col2:
+                # Dùng markdown để căn lề phải cho nghệ sĩ
+                st.markdown(f"<p style='text-align: right; margin: 0;'>{s['artist']}</p>", unsafe_allow_html=True)
+            
+            # Đường kẻ ngang với margin bằng 0 để thu hẹp khoảng cách
+            st.markdown("<hr style='margin: 5px 0px;'>", unsafe_allow_html=True)
 
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
