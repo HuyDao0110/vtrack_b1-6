@@ -61,7 +61,7 @@ if st.session_state.page == "Home":
     with bxh_l:
         st.image("come_my_way.png", use_container_width=True)
             
-    with bxh_r:
+   with bxh_r:
         songs = [
             {"rank": "2", "title": "Em", "artist": "Binz"},
             {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
@@ -74,15 +74,15 @@ if st.session_state.page == "Home":
             {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
         ]
         
-        # Khởi tạo chuỗi Markdown Table rỗng, định dạng cột 1 căn trái, cột 2 căn phải
-        bxh_pure_markdown = "| | |\n| :--- | ---: |\n"
-        
-        # Duyệt qua danh sách để cộng dồn vào bảng liên tục
-        for s in songs:
-            bxh_pure_markdown += f"| {s['rank']}. {s['title']} | **{s['artist']}** |\n"
-            
-        # Xuất ra giao diện bằng một lệnh duy nhất để triệt tiêu toàn bộ khoảng trống thừa
-        st.markdown(bxh_pure_markdown)
+        # Tạo một container bật tính năng giảm khoảng cách tối đa
+        with st.container():
+            for s in songs:
+                # Dùng đúng hàm st.columns thuần túy để chia hai bên trái/phải
+                sl, sr = st.columns([8, 2])
+                
+                # Mẹo: Đưa \n--- trực tiếp vào cuối text để ép đường kẻ sát chân chữ mà không bị lỗi layout
+                sl.write(f"{s['rank']}. {s['title']}\n\n---")
+                sr.write(f"<p style='text-align: right; margin: 0; font-weight: bold;'>{s['artist']}</p>\n\n---", unsafe_allow_html=True)
 
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
