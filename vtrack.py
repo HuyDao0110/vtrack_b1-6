@@ -102,20 +102,15 @@ elif st.session_state.page == "Thư viện":
     st.image("thu_vien_yeu_thich.png", use_container_width=True)
 
 elif st.session_state.page == "Đăng nhập":
-    # Tạo khoảng trống phía trên bằng cách chia cột
     _, center_col, _ = st.columns([1, 2, 1])
-    
     with center_col:
         st.write("# Chào mừng bạn quay trở lại")
+        st.text_input("Tên tài khoản", placeholder="Nhập username")
+        st.text_input("Mật khẩu", type="password", placeholder="Nhập password")
         
-        # Dùng st.text_input cho Username và Password
-        st.text_input("Tên tài khoản (Username)", placeholder="Nhập tên tài khoản")
-        st.text_input("Mật khẩu (Password)", type="password", placeholder="Nhập mật khẩu")
-        
-        # Nút đăng nhập và đăng ký
         c1, c2 = st.columns(2)
-        if c1.button("Đăng nhập", use_container_width=True):
-            st.success("Đang xử lý...")
-        if c2.button("Đăng ký", use_container_width=True):
-            st.session_state.page = "Đăng ký"
-            
+        # Key riêng cho nút trong form đăng nhập
+        if c1.button("Đăng nhập", use_container_width=True, key="login_submit"): st.success("Đang xử lý...")
+        if c2.button("Đăng ký", use_container_width=True, key="reg_submit"): st.session_state.page = "Đăng ký"
+        
+        st.image("wallpaper.png", use_container_width=True)
