@@ -12,7 +12,7 @@ nav = st.columns([0.6, 0.4, 4.0, 0.4, 1.1, 1.1])
 with nav[0]:
     st.image("logo.png", width=50)
 with nav[1]:
-    if st.button("⌂", use_container_width=True): st.session_state.page = "Home"
+    if st.button("🏠", use_container_width=True): st.session_state.page = "Home"
 with nav[2]:
     st.text_input("Tìm kiếm...", label_visibility="collapsed")
 with nav[3]:
