@@ -126,3 +126,33 @@ elif st.session_state.page == "Đăng nhập":
     # Đặt họa tiết vào cột bên phải
     with col_right:
         st.image("right_pattern.png", use_container_width=True)
+
+elif st.session_state.page == "Đăng ký":
+    # Chia trang thành 3 cột để giữ bố cục thống nhất với trang Đăng nhập
+    col_left, col_center, col_right = st.columns([1, 2, 1])
+    
+    with col_left:
+        st.image("left_pattern.png", use_container_width=True)
+    
+    with col_center:
+        st.write("# Đăng ký để bắt đầu")
+        
+        st.text_input("Tên tài khoản (Username)", placeholder="Nhập tên tài khoản")
+        st.text_input("Địa chỉ email (Email address)", placeholder="Nhập địa chỉ email")
+        
+        # Chia cột nhỏ cho mật khẩu để gọn gàng hơn
+        c1, c2 = st.columns(2)
+        with c1:
+            st.text_input("Mật khẩu", type="password", placeholder="Mật khẩu")
+        with c2:
+            st.text_input("Xác thực lại mật khẩu", type="password", placeholder="Nhập lại mật khẩu")
+        
+        # Nút hành động với key riêng biệt để tránh xung đột
+        sub_c1, sub_c2 = st.columns(2)
+        if sub_c1.button("Đăng ký", use_container_width=True, key="reg_submit_final_page"):
+            st.success("Đang tạo tài khoản...")
+        if sub_c2.button("Đăng nhập", use_container_width=True, key="login_nav_from_reg"):
+            st.session_state.page = "Đăng nhập"
+            
+    with col_right:
+        st.image("right_pattern.png", use_container_width=True)
