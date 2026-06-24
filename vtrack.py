@@ -57,7 +57,7 @@ if st.session_state.page == "Home":
     bxh_l, bxh_r = st.columns([3.5, 6.5])
     
     with bxh_l:
-        st.image("best_notification.png", use_container_width=True)
+        st.image("come_my_way.png", use_container_width=True)
             
     with bxh_r:
         # Danh sách bài hát chuẩn 100% của Huy
