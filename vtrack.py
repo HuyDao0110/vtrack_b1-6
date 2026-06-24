@@ -3,6 +3,15 @@ import streamlit as st
 # --- CẤU HÌNH TRANG WEB ---
 st.set_page_config(page_title="V-track - Ứng dụng nghe nhạc", layout="wide")
 
+# Inject CSS để triệt tiêu khoảng cách mặc định của Streamlit trong khu vực BXH
+st.html("""
+    <style>
+        [data-testid="stVerticalBlock"] {
+            gap: 0rem !important;
+        }
+    </style>
+""")
+
 if "page" not in st.session_state:
     st.session_state.page = "Home"
 
@@ -32,7 +41,7 @@ if st.session_state.page == "Home":
     st.write("# Nghe gì hôm nay, User?")
     st.image("best_notification.png", use_container_width=True)
 
-    # --- NGHỆ SĨ PHỔ BIẾN ---
+    # --- NGHỆ SĨ PHỔ BIẾI ---
     st.write("## Nghệ sĩ phổ biến")
     art_cols = st.columns(5)
     artists = [
@@ -61,7 +70,7 @@ if st.session_state.page == "Home":
     with bxh_l:
         st.image("come_my_way.png", use_container_width=True)
             
-   with bxh_r:
+    with bxh_r:
         songs = [
             {"rank": "2", "title": "Em", "artist": "Binz"},
             {"rank": "3", "title": "Nếu như ta chẳng còn", "artist": "RPT MCK"},
@@ -74,15 +83,12 @@ if st.session_state.page == "Home":
             {"rank": "10", "title": "toidaidot", "artist": "GREY D"}
         ]
         
-        # Tạo một container bật tính năng giảm khoảng cách tối đa
-        with st.container():
-            for s in songs:
-                # Dùng đúng hàm st.columns thuần túy để chia hai bên trái/phải
-                sl, sr = st.columns([8, 2])
-                
-                # Mẹo: Đưa \n--- trực tiếp vào cuối text để ép đường kẻ sát chân chữ mà không bị lỗi layout
-                sl.write(f"{s['rank']}. {s['title']}\n\n---")
-                sr.write(f"<p style='text-align: right; margin: 0; font-weight: bold;'>{s['artist']}</p>\n\n---", unsafe_allow_html=True)
+        # Streamlit thuần túy lặp qua từng bài viết dòng kẻ sát sạt
+        for s in songs:
+            sl, sr = st.columns([8, 2])
+            sl.write(f"{s['rank']}. {s['title']}")
+            sr.write(f"<p style='text-align: right; margin: 0; font-weight: bold;'>{s['artist']}</p>", unsafe_allow_html=True)
+            st.write("---")
 
 elif st.session_state.page == "Nghệ sĩ":
     if st.button("⬅ Quay lại"): st.session_state.page = "Home"
