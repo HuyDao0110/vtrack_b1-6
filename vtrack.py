@@ -206,7 +206,7 @@ elif st.session_state.page == "Ngôn ngữ":
     # Sử dụng toán tử chia lấy dư để rải đều ngôn ngữ vào các cột
     for i, lang in enumerate(languages_list):
         with cols[i % num_cols]:
-            st.write(f"• {lang}")
+            st.write(f"{lang}")
 
 # Thêm một chút khoảng cách phía dưới
 st.write("---")
