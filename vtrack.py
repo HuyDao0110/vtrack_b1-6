@@ -35,7 +35,6 @@ if st.session_state.page == "Home":
     date_str = now.strftime(f"*{day_name}, %d-%m-%Y*")
     st.markdown("## Nghe gì hôm nay, User?")
     st.write(f"#####       Hôm nay là **{date_str}**")
-    if st.button("Thông tin nghệ sĩ (Xử lý phần giao diện)", use_container_width=True): st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
     st.image("best_notification.png", use_container_width=True)
 
     # ==================== NGHỆ SĨ PHỔ BIẾN ====================
@@ -48,27 +47,26 @@ if st.session_state.page == "Home":
         
     art_cols = st.columns(5)
     
-    # Cấu trúc dữ liệu: (Tên nghệ sĩ, tên file ảnh)
     artists = [
         ("Sơn Tùng M-TP", "A1.png"), 
         ("SOOBIN", "A2.png"),  
         ("bùi trường linh", "A3.png"), 
         ("Trang Pháp", "A4.png"), 
-        ("Nghệ sĩ khác", "A5.png")
+        ("Ẩn", "A5.png") # Ô ảnh mờ dần cuối cùng
     ]
     
     for i, (name, file_name) in enumerate(artists):
         with art_cols[i]:
             st.image(file_name, use_container_width=True)
             
-            # Đồng bộ nút bấm bên dưới mỗi ảnh
-            if st.button("Xem chi tiết", key=f"btn_art_{i}", use_container_width=True):
-                if name == "Trang Pháp":
-                    st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
-                    st.rerun()
-                else:
-                    # Các nghệ sĩ khác chỉ thông báo, không chuyển trang
-                    st.toast(f"Tính năng xem thông tin {name} đang được phát triển!")
+            # Chỉ hiển thị nút "Xem chi tiết" cho 4 ô nghệ sĩ đầu tiên
+            if name != "Ẩn":
+                if st.button("Xem chi tiết", key=f"btn_art_{i}", use_container_width=True):
+                    if name == "Trang Pháp":
+                        st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
+                        st.rerun()
+                    else:
+                        st.toast(f"Tính năng xem thông tin {name} đang được phát triển!")
 
 
     # ==================== ALBUM NỔI BẬT ====================
@@ -77,22 +75,22 @@ if st.session_state.page == "Home":
         st.write("## Album *Nổi bật*") 
     with col_btn:
         st.button("Thêm", key="btn_more_albums", use_container_width=True)
-        
+    
     alb_cols = st.columns(6)
     
-    # Danh sách tên album tương ứng với file ảnh của bạn
     albums = [
-        "M-TP Album", "Ai Cũng Phải Bắt Đầu Từ Đâu Đó", "Album 3", "Bật Lên", "Từng Ngày Như", "Album 6"
+        "M-TP Album", "Ai Cũng Phải Bắt Đầu Từ Đâu Đó", "Album 3", "Bật Lên", "Từng Ngày Như", "Ẩn"
     ]
-    alb_images = ["B1.png", "B2.png", "B3.png", "B4.png", "B5.png", "B6.png"]
+    alb_images = ["B1.png", "B2.png", "B3.png", "B4.png", "B5.png", "B6.png"] # B6.png là ảnh mờ
     
     for i in range(6):
         with alb_cols[i]:
             st.image(alb_images[i], use_container_width=True)
             
-            # Đồng bộ nút bấm "Xem chi tiết" cho phần Album
-            if st.button("Xem chi tiết", key=f"btn_alb_{i}", use_container_width=True):
-                st.toast(f"Chức năng mở Album '{albums[i]}' đang được phát triển!")
+            # Chỉ hiện nút "Xem chi tiết" cho 5 album đầu, ô thứ 6 (ảnh mờ) sẽ bỏ qua
+            if albums[i] != "Ẩn":
+                if st.button("Xem chi tiết", key=f"btn_alb_{i}", use_container_width=True):
+                    st.toast(f"Chứ năng mở Album '{albums[i]}' đang được phát triển!")
 
     #bxh nhạc nghệ sĩ
     header_col, buttons_col = st.columns([2, 1])
