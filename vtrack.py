@@ -38,7 +38,7 @@ if st.session_state.page == "Home":
     if st.button("Thông tin nghệ sĩ (Xử lý phần giao diện)", use_container_width=True): st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
     st.image("best_notification.png", use_container_width=True)
 
-    # nghệ sĩ phổ biến
+    # ==================== NGHỆ SĨ PHỔ BIẾN ====================
     col_title, col_btn = st.columns([5, 1])
     
     with col_title:
@@ -48,58 +48,51 @@ if st.session_state.page == "Home":
         
     art_cols = st.columns(5)
     
-    # 1. Các ảnh tĩnh hiển thị bình thường
-    with art_cols[0]:
-        st.image("A1.png", use_container_width=True)
-    with art_cols[1]:
-        st.image("A2.png", use_container_width=True)
-    with art_cols[2]:
-        st.image("A3.png", use_container_width=True)
-        
-    # 2. Ô thứ 4: Ảnh Trang Pháp vừa hiện ảnh vừa bắt được sự kiện click
-    with art_cols[3]:
-        # Tạo một nút bấm vô hình có kích thước đè khít lên tấm ảnh
-        # Sử dụng container để cố định vị trí
-        with st.container():
-            # Đặt ảnh Trang Pháp làm nền background cho nút bấm thông qua CSS thuần của cột này
-            st.markdown(
-                """
-                <style>
-                /* Phong cách hóa nút bấm cụ thể này để nó chứa ảnh thay vì khung trống */
-                div[data-testid="stButton"] button[key="click_trang_phap"] {
-                    background-image: url("https://raw.githubusercontent.com/TrangPhap/image/main/A4.png"); /* Nếu bạn deploy lên web */
-                    border: none;
-                    padding: 0;
-                }
-                </style>
-                """, 
-                unsafe_allow_html=True
-            )
+    # Cấu trúc dữ liệu: (Tên nghệ sĩ, tên file ảnh)
+    artists = [
+        ("Sơn Tùng M-TP", "A1.png"), 
+        ("SOOBIN", "A2.png"),  
+        ("bùi trường linh", "A3.png"), 
+        ("Trang Pháp", "A4.png"), 
+        ("Nghệ sĩ khác", "A5.png")
+    ]
+    
+    for i, (name, file_name) in enumerate(artists):
+        with art_cols[i]:
+            st.image(file_name, use_container_width=True)
             
-            # CÁCH FIX KHÔNG LỖI ẢNH: Vẫn hiển thị st.image gốc, 
-            # nhưng đặt một nút bấm CHỮ TRỐNG ngay sát dưới/trên hoặc dùng nút bấm thông thường làm hot-spot.
-            st.image("A4.png", use_container_width=True)
-            
-            # Để không bị mất ảnh như trên hình của bạn, ta tạo nút "Vào trang" trong suốt hoặc nút nhỏ gọn:
-            if st.button("Xem Chi Tiết", key="click_trang_phap", use_container_width=True):
-                st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
-                st.rerun()
+            # Đồng bộ nút bấm bên dưới mỗi ảnh
+            if st.button("Xem chi tiết", key=f"btn_art_{i}", use_container_width=True):
+                if name == "Trang Pháp":
+                    st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
+                    st.rerun()
+                else:
+                    # Các nghệ sĩ khác chỉ thông báo, không chuyển trang
+                    st.toast(f"Tính năng xem thông tin {name} đang được phát triển!")
 
-    # 3. Ô cuối cùng
-    with art_cols[4]:
-        st.image("A5.png", use_container_width=True)
 
-    #album nổi bật
+    # ==================== ALBUM NỔI BẬT ====================
     col_title, col_btn = st.columns([5, 1])
     with col_title:
         st.write("## Album *Nổi bật*") 
     with col_btn:
         st.button("Thêm", key="btn_more_albums", use_container_width=True)
+        
     alb_cols = st.columns(6)
-    albums = ["B1.png", "B2.png", "B3.png", "B4.png", "B5.png", "B6.png"]
-    for i, file_name in enumerate(albums):
+    
+    # Danh sách tên album tương ứng với file ảnh của bạn
+    albums = [
+        "M-TP Album", "Ai Cũng Phải Bắt Đầu Từ Đâu Đó", "Album 3", "Bật Lên", "Từng Ngày Như", "Album 6"
+    ]
+    alb_images = ["B1.png", "B2.png", "B3.png", "B4.png", "B5.png", "B6.png"]
+    
+    for i in range(6):
         with alb_cols[i]:
-            st.image(file_name, use_container_width=True)
+            st.image(alb_images[i], use_container_width=True)
+            
+            # Đồng bộ nút bấm "Xem chi tiết" cho phần Album
+            if st.button("Xem chi tiết", key=f"btn_alb_{i}", use_container_width=True):
+                st.toast(f"Chức năng mở Album '{albums[i]}' đang được phát triển!")
 
     #bxh nhạc nghệ sĩ
     header_col, buttons_col = st.columns([2, 1])
