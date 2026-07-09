@@ -216,26 +216,53 @@ elif st.session_state.page == "Ngôn ngữ":
         with cols[i % num_cols]:
             st.write(f"{lang}")
 
-#nghệ sĩ
+# nghệ sĩ
 elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
-    #nút
+    # Khởi tạo trạng thái phát nhạc nếu chưa có
+    if "play_music" not in st.session_state:
+        st.session_state.play_music = False
+
+    # nút quay lại
     if st.button("⬅ Quay lại"): 
         st.session_state.page = "Home"
+        st.rerun()
     
-    st.write("---")#danh sách phát
+    st.write("---") # danh sách phát
     with st.container():
         l, r = st.columns([1, 1])
         
         with l:
-            st.image("trang_phap.png", width=5000)
+            # Sửa lại width phù hợp hoặc use_container_width để ảnh không bị vỡ/quá to
+            st.image("trang_phap.png", use_container_width=True)
             
         with r:
             st.markdown("# Trang Pháp và hành trình trong CHENGFENG 2026")
             c_btn, c_info = st.columns([1, 3])
+            
             with c_btn:
-                st.button("▶ Phát danh sách")
+                # Khi bấm nút sẽ kích hoạt trạng thái phát nhạc
+                if st.button("▶ Phát danh sách", key="btn_play_playlist"):
+                    st.session_state.play_music = True
+                    st.rerun()
+                    
             with c_info:
                 st.write("7 bài hát • 24 phút 42 giây")
+
+            # HIỂN THỊ THANH PHÁT NHẠC KHI ĐÃ BẤM NÚT
+            if st.session_state.play_music:
+                st.write("🎵 *Đang phát: Toàn bộ danh sách CHENGFENG 2026*")
+                # Gọi file mp3 của bạn
+                try:
+                    st.audio("tphapcf.mp3", format="audio/mp3", autoplay=True)
+                except Exception as e:
+                    st.error("Không tìm thấy file âm thanh 'tphapcf.mp3'. Vui lòng kiểm tra lại thư mục nguồn.")
+                
+                # Thêm nút nhỏ để tắt nhạc nếu muốn
+                if st.button("⏹ Dừng phát", key="btn_stop_playlist"):
+                    st.session_state.play_music = False
+                    st.rerun()
+                    
+            st.write("") # Khoảng cách nhỏ
 
             songs = [
                 "1. MOONLIGHT", "2. Nghệ Thuật Gia Vĩ Đại", "3. Là Anh", 
@@ -244,6 +271,24 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
             
             for song in songs:
                 st.markdown(f"{song}")
+
+    # tiểu sử
+    st.write("### Tiểu sử")
+    st.write("Trang Pháp (Nguyễn Thùy Trang, sinh năm 1989) là một nữ nghệ sĩ toàn năng của showbiz Việt, nổi bật với vai trò ca sĩ, nhạc sĩ và nhà sản xuất âm nhạc.")
+    st.write("Sau một thời gian lui về hậu trường làm sản xuất, cô đã có màn tái xuất bùng nổ tại chương trình Chị Đẹp Đạp Gió Rẽ Sóng 2023. ")
+    st.write("Bằng các kỹ năng âm nhạc toàn diện, cô xuất sắc giành ngôi vị Quán quân, khẳng định vị thế của một nghệ có tư duy văn minh và tầm ảnh hưởng lớn trong làng nhạc Việt hiện đại.")
+    
+    # đề xuất
+    st.write("## Có thể bạn thích")
+    c1, c2, c3, c4 = st.columns([1, 1, 2, 1])
+    rec_images = ["C1.png", "C2.png", "C3.png", "C4.png"]
+    
+    cols = [c1, c2, c3, c4]
+    
+    for i, col in enumerate(cols):
+        with col:
+            st.image(rec_images[i], use_container_width=True)
+            st.markdown(f"<div style='text-align: center; margin-top: -10px;'></div>", unsafe_allow_html=True)
 
     #tiểu sử
     st.write("### Tiểu sử")
