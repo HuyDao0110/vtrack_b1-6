@@ -246,7 +246,7 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
                     st.rerun()
                     
             with c_info:
-                st.write("7 bài hát • 24 phút 42 giây")
+                st.write("7 bài hát • 25 phút 42 giây")
 
             # HIỂN THỊ THANH PHÁT NHẠC KHI ĐÃ BẤM NÚT
             if st.session_state.play_music:
