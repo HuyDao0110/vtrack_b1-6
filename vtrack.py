@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from datetime import datetime
 
 st.set_page_config(page_title="V-track", layout="wide")
@@ -37,7 +38,6 @@ if st.session_state.page == "Home":
     if st.button("Thông tin nghệ sĩ (Xử lý phần giao diện)", use_container_width=True): st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
     st.image("best_notification.png", use_container_width=True)
 
-    #nghệ sĩ phổ biến
     # nghệ sĩ phổ biến
     col_title, col_btn = st.columns([5, 1])
     
@@ -48,7 +48,7 @@ if st.session_state.page == "Home":
         
     art_cols = st.columns(5)
     
-    # 1. Hiển thị các ảnh tĩnh bình thường (Sơn Tùng, SOOBIN, bùi trường linh)
+    # 1. Các ảnh tĩnh hiển thị bình thường
     with art_cols[0]:
         st.image("A1.png", use_container_width=True)
     with art_cols[1]:
@@ -56,38 +56,36 @@ if st.session_state.page == "Home":
     with art_cols[2]:
         st.image("A3.png", use_container_width=True)
         
-    # 2. Ô thứ 4: Biến ảnh Trang Pháp thành NÚT BẤM hoàn toàn
+    # 2. Ô thứ 4: Ảnh Trang Pháp vừa hiện ảnh vừa bắt được sự kiện click
     with art_cols[3]:
-        # Tạo một nút bấm không có chữ (chỉ có khoảng trắng)
-        if st.button(" ", key="btn_trang_phap_image", use_container_width=True):
-            st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
-            st.rerun()
+        # Tạo một nút bấm vô hình có kích thước đè khít lên tấm ảnh
+        # Sử dụng container để cố định vị trí
+        with st.container():
+            # Đặt ảnh Trang Pháp làm nền background cho nút bấm thông qua CSS thuần của cột này
+            st.markdown(
+                """
+                <style>
+                /* Phong cách hóa nút bấm cụ thể này để nó chứa ảnh thay vì khung trống */
+                div[data-testid="stButton"] button[key="click_trang_phap"] {
+                    background-image: url("https://raw.githubusercontent.com/TrangPhap/image/main/A4.png"); /* Nếu bạn deploy lên web */
+                    border: none;
+                    padding: 0;
+                }
+                </style>
+                """, 
+                unsafe_allow_html=True
+            )
             
-        # Dùng CSS để biến nút bấm trên thành chính tấm ảnh "A4.png"
-        st.markdown(
-            """
-            <style>
-            /* Nhắm vào nút bấm cụ thể có key tương ứng trong Streamlit */
-            div[data-testid="stButton"] button:has(div p:contains(" ")) {
-                background-image: url("app/static/A4.png"); /* Hoặc đường dẫn ảnh của bạn */
-                background-size: cover;
-                background-position: center;
-                border: none;
-                border-radius: 10px; /* Bo góc giống các ảnh khác */
-                height: 170px; /* Điều chỉnh chiều cao cho bằng các ảnh bên cạnh */
-                width: 100%;
-                transition: transform 0.2s;
-            }
-            div[data-testid="stButton"] button:has(div p:contains(" ")):hover {
-                transform: scale(1.02); /* Hiệu ứng phóng nhẹ khi di chuột vào */
-                border: none;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
+            # CÁCH FIX KHÔNG LỖI ẢNH: Vẫn hiển thị st.image gốc, 
+            # nhưng đặt một nút bấm CHỮ TRỐNG ngay sát dưới/trên hoặc dùng nút bấm thông thường làm hot-spot.
+            st.image("A4.png", use_container_width=True)
+            
+            # Để không bị mất ảnh như trên hình của bạn, ta tạo nút "Vào trang" trong suốt hoặc nút nhỏ gọn:
+            if st.button("Xem Chi Tiết", key="click_trang_phap", use_container_width=True):
+                st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
+                st.rerun()
 
-    # 3. Ô cuối cùng (Ảnh trống)
+    # 3. Ô cuối cùng
     with art_cols[4]:
         st.image("A5.png", use_container_width=True)
 
