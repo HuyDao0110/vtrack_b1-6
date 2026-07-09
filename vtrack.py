@@ -38,21 +38,58 @@ if st.session_state.page == "Home":
     st.image("best_notification.png", use_container_width=True)
 
     #nghệ sĩ phổ biến
+    # nghệ sĩ phổ biến
     col_title, col_btn = st.columns([5, 1])
     
     with col_title:
-        st.write("## Nghệ sĩ *Phổ biến*") # Ví dụ: ## Nghệ sĩ Phổ biến
+        st.write("## Nghệ sĩ *Phổ biến*") 
     with col_btn:
         st.button("Thêm", key="btn_more_unique_id", use_container_width=True)
+        
     art_cols = st.columns(5)
-    artists = [
-        (" ", "A1.png"), (" ", "A2.png"), 
-        (" ", "A3.png"), (" ", "A4.png"), 
-        (" ", "A5.png")
-    ]
-    for i, (name, file_name) in enumerate(artists):
-        with art_cols[i]:
-            st.image(file_name, caption=name, use_container_width=True)
+    
+    # 1. Hiển thị các ảnh tĩnh bình thường (Sơn Tùng, SOOBIN, bùi trường linh)
+    with art_cols[0]:
+        st.image("A1.png", use_container_width=True)
+    with art_cols[1]:
+        st.image("A2.png", use_container_width=True)
+    with art_cols[2]:
+        st.image("A3.png", use_container_width=True)
+        
+    # 2. Ô thứ 4: Biến ảnh Trang Pháp thành NÚT BẤM hoàn toàn
+    with art_cols[3]:
+        # Tạo một nút bấm không có chữ (chỉ có khoảng trắng)
+        if st.button(" ", key="btn_trang_phap_image", use_container_width=True):
+            st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
+            st.rerun()
+            
+        # Dùng CSS để biến nút bấm trên thành chính tấm ảnh "A4.png"
+        st.markdown(
+            """
+            <style>
+            /* Nhắm vào nút bấm cụ thể có key tương ứng trong Streamlit */
+            div[data-testid="stButton"] button:has(div p:contains(" ")) {
+                background-image: url("app/static/A4.png"); /* Hoặc đường dẫn ảnh của bạn */
+                background-size: cover;
+                background-position: center;
+                border: none;
+                border-radius: 10px; /* Bo góc giống các ảnh khác */
+                height: 170px; /* Điều chỉnh chiều cao cho bằng các ảnh bên cạnh */
+                width: 100%;
+                transition: transform 0.2s;
+            }
+            div[data-testid="stButton"] button:has(div p:contains(" ")):hover {
+                transform: scale(1.02); /* Hiệu ứng phóng nhẹ khi di chuột vào */
+                border: none;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+    # 3. Ô cuối cùng (Ảnh trống)
+    with art_cols[4]:
+        st.image("A5.png", use_container_width=True)
 
     #album nổi bật
     col_title, col_btn = st.columns([5, 1])
