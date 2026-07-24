@@ -295,41 +295,36 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
 
 # nghệ sĩ Sơn Tùng M-TP
 elif st.session_state.page == "Thông tin nghệ sĩ: Sơn Tùng M-TP":
+    # Nút quay lại
     if st.button("◀ Back", key="btn_back_sontung"): 
         st.session_state.page = "Home"
         st.rerun()
     
     st.write("---")
+    
+    # Chia 2 cột tỷ lệ đẹp cho giao diện
     col_img, col_info = st.columns([1, 1.2])
     
     with col_img:
-        st.image("son_tung.png", use_container_width=True)
+        # Ảnh Sơn Tùng M-TP chính
+        st.image("A1.png", use_container_width=True) 
         
     with col_info:
         st.markdown("# Sơn Tùng M-TP cùng màn Comeback với COME MY WAY")
-        st.write("")
+        st.write("") 
         
-        video_id = "SIQR9iu09bQ" 
-
-        components.html(
-            f"""
-            <iframe 
-                width="100%" 
-                height="315" 
-                src="https://www.youtube.com/embed/{video_id}" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-                style="border-radius: 15px;"
-            ></iframe>
-            """,
-            height=330,
+        # MẸO: Dùng ảnh chụp MV (hoặc ảnh thumbnail) làm mock video
+        # Bạn thay "come_my_way.png" hoặc "A1.png" bằng ảnh thumbnail MV của bạn
+        st.image("comemyway.png", use_container_width=True)
+        
+        # Link dẫn trực tiếp tới video YouTube thực tế khi click
+        st.markdown(
+            "🔗 **Xem video trên Youtube:** [https://www.youtube.com/watch?v=SIQR9iu09bQ](https://www.youtube.com/watch?v=SIQR9iu09bQ)"
         )
-        st.caption("*Video COME MY WAY trên Youtube*")
 
     st.write("---")
     
+    # Phần bài viết mô tả bên dưới
     st.markdown(
         """
         > *"Come My Way" đánh dấu màn tái xuất bùng nổ của Sơn Tùng M-TP qua sự kết hợp cùng rapper Tyga. 
