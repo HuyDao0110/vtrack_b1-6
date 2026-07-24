@@ -50,7 +50,7 @@ if st.session_state.page == "Home":
     artists = [
         ("Sơn Tùng M-TP", "A1.png"), 
         ("SOOBIN", "A2.png"),  
-        ("bùi trường linh", "A3.png"), 
+        ("buitruonglinh", "A3.png"), 
         ("Trang Pháp", "A4.png"), 
         ("Ẩn", "A5.png") # Ô ảnh mờ dần cuối cùng
     ]
@@ -67,6 +67,12 @@ if st.session_state.page == "Home":
                         st.rerun()
                     elif name == "Sơn Tùng M-TP":
                         st.session_state.page = "Thông tin nghệ sĩ: Sơn Tùng M-TP"
+                        st.rerun()
+                    elif name == "SOOBIN":
+                        st.session_state.page = "Thông tin nghệ sĩ: SOOBIN"
+                        st.rerun()
+                    elif name == "buitruonglinh":
+                        st.session_state.page = "Thông tin nghệ sĩ: buitruonglinh"
                         st.rerun()
                     else:
                         st.toast(f"Tính năng xem thông tin của nghệ sĩ {name} đang được phát triển!")
@@ -330,6 +336,45 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Sơn Tùng M-TP":
         > *"Come My Way" đánh dấu màn tái xuất bùng nổ của Sơn Tùng M-TP qua sự kết hợp cùng rapper Tyga. 
         Thể hiện hoàn toàn bằng tiếng Anh, bài hát mang giai điệu Hip-hop/Pop hiện đại kết hợp cùng MV độc đáo, 
         lồng ghép tinh tế văn hóa Việt Nam vào nền nghệ thuật thị giác đương đại.*
+        """
+    )
+
+# nghệ sĩ SOOBIN
+elif st.session_state.page == "Thông tin nghệ sĩ: SOOBIN":
+    # Nút quay lại
+    if st.button("◀ Quay lại", key="btn_back_soobin"): 
+        st.session_state.page = "Home"
+        st.rerun()
+    
+    st.write("---")
+    
+    # Chia 2 cột tỷ lệ
+    col_img, col_info = st.columns([1, 1.2])
+    
+    with col_img:
+        # Ảnh SOOBIN
+        st.image("soobin.png", use_container_width=True) 
+        
+    with col_info:
+        st.markdown("# Soobin và Binz khuấy đảo MXH cùng bài “Em”")
+        st.write("") 
+        
+        # Mẹo: Ảnh thumbnail mockup MV "Em"
+        st.image("em.png", use_container_width=True, caption="Video EM trên Youtube")
+        
+        # Link Youtube
+        st.markdown(
+            "🔗 **Xem video trên Youtube:** [https://www.youtube.com/watch?v=SIQR9iu09bQ](https://www.youtube.com/watch?v=SIQR9iu09bQ)"
+        )
+
+    st.write("---")
+    
+    # Phần mô tả nội dung bên dưới
+    st.markdown(
+        """
+        > *"Em" là bản R&B/Ballad da diết của Binz và SOOBIN, khắc họa nỗi tiếc nuối vỡ tan sau cuộc tình. 
+        Trong bài hát, SOOBIN đảm nhận phần vocal chính với kỹ thuật luyến láo mượt mà và giọng gió 
+        bay bổng, tạo điểm tựa cảm xúc êm dịu cân bằng hoàn hảo với chất rap trầm buồn, chiêm nghiệm của Binz.*
         """
     )
 
