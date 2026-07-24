@@ -253,7 +253,7 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
                 st.write("🎵 *Đang phát: Toàn bộ danh sách CHENGFENG 2026*")
                 # Gọi file mp3 của bạn
                 try:
-                    st.audio("tphapcf.mp3", format="audio/mp3", autoplay=True)
+                    st.audio("1tphapcf.mp3", format="audio/mp3", autoplay=True)
                 except Exception as e:
                     st.error("Không tìm thấy file âm thanh 'tphapcf.mp3'. Vui lòng kiểm tra lại thư mục nguồn.")
                 
