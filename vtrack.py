@@ -378,4 +378,43 @@ elif st.session_state.page == "Thông tin nghệ sĩ: SOOBIN":
         """
     )
 
+# nghệ sĩ buitruonglinh
+elif st.session_state.page == "Thông tin nghệ sĩ: buitruonglinh":
+    # Nút quay lại
+    if st.button("◀ Quay lại", key="btn_back_btl"): 
+        st.session_state.page = "Home"
+        st.rerun()
+    
+    st.write("---")
+    
+    # Chia 2 cột tỷ lệ
+    col_img, col_info = st.columns([1, 1.2])
+    
+    with col_img:
+        # Ảnh bùi trường linh (A3.png)
+        st.image("buitruonglinh.png", use_container_width=True) 
+        
+    with col_info:
+        st.markdown("# Thời của buitruonglinh đã đến với bài ‘Sớm như vậy’")
+        st.write("") 
+        
+        # Mẹo: Dùng ảnh mockup cho video YouTube
+        st.image("somnhuvay.png", use_container_width=True, caption="Video SỚM NHƯ VẬY trên Youtube")
+        
+        # Link Youtube
+        st.markdown(
+            "🔗 **Xem video trên Youtube:** [https://www.youtube.com/watch?v=SIQR9iu09bQ](https://www.youtube.com/watch?v=SIQR9iu09bQ)"
+        )
+
+    st.write("---")
+    
+    # Phần mô tả nội dung bên dưới
+    st.markdown(
+        """
+        > *"Sớm Như Vậy" là một bản phối tràn đầy năng lượng tích cực, gây ấn tượng bởi giai điệu bắt tai, 
+        phong cách vocal trẻ trung cùng tinh thần tươi mới, truyền cảm hứng tự do và chữa lành 
+        cho người nghe ngay từ những câu hát đầu tiên.*
+        """
+    )
+
 st.write("---")
