@@ -309,7 +309,23 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Sơn Tùng M-TP":
         st.markdown("# Sơn Tùng M-TP cùng màn Comeback với COME MY WAY")
         st.write("")
         
-        st.video("https://www.youtube.com/watch?v=SIQR9iu09bQ")
+        video_id = "SIQR9iu09bQ" 
+
+        components.html(
+            f"""
+            <iframe 
+                width="100%" 
+                height="315" 
+                src="https://www.youtube.com/embed/{video_id}" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                style="border-radius: 15px;"
+            ></iframe>
+            """,
+            height=330,
+        )
         st.caption("*Video COME MY WAY trên Youtube*")
 
     st.write("---")
