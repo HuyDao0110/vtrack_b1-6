@@ -91,9 +91,9 @@ if st.session_state.page == "Home":
     ]
     alb_images = ["B1.png", "B2.png", "B3.png", "B4.png", "B5.png", "B6.png"] # B6.png là ảnh mờ
     
-    #for i in range(6):
-    #    with alb_cols[i]:
-    #        st.image(alb_images[i], use_container_width=True)
+    for i in range(6):
+        with alb_cols[i]:
+            st.image(alb_images[i], use_container_width=True)
             
     #        if albums[i] != "Ẩn":
     #            if st.button("Xem chi tiết", key=f"btn_alb_{i}", use_container_width=True):
