@@ -52,14 +52,13 @@ if st.session_state.page == "Home":
         ("SOOBIN", "A2.png"),  
         ("buitruonglinh", "A3.png"), 
         ("Trang Pháp", "A4.png"), 
-        ("Ẩn", "A5.png") # Ô ảnh mờ dần cuối cùng
+        ("Ẩn", "A5.png")
     ]
     
     for i, (name, file_name) in enumerate(artists):
         with art_cols[i]:
             st.image(file_name, use_container_width=True)
             
-            # Chỉ hiển thị nút "Xem chi tiết" cho 4 ô nghệ sĩ đầu tiên
             if name != "Ẩn":
                 if st.button("Xem chi tiết", key=f"btn_art_{i}", use_container_width=True):
                     if name == "Trang Pháp":
@@ -92,14 +91,13 @@ if st.session_state.page == "Home":
     ]
     alb_images = ["B1.png", "B2.png", "B3.png", "B4.png", "B5.png", "B6.png"] # B6.png là ảnh mờ
     
-    for i in range(6):
-        with alb_cols[i]:
-            st.image(alb_images[i], use_container_width=True)
+    #for i in range(6):
+    #    with alb_cols[i]:
+    #        st.image(alb_images[i], use_container_width=True)
             
-            # Chỉ hiện nút "Xem chi tiết" cho 5 album đầu, ô thứ 6 (ảnh mờ) sẽ bỏ qua
-            if albums[i] != "Ẩn":
-                if st.button("Xem chi tiết", key=f"btn_alb_{i}", use_container_width=True):
-                    st.toast(f"Chứ năng mở Album '{albums[i]}' đang được phát triển!")
+    #        if albums[i] != "Ẩn":
+    #            if st.button("Xem chi tiết", key=f"btn_alb_{i}", use_container_width=True):
+    #                st.toast(f"Chứ năng mở Album '{albums[i]}' đang được phát triển!")
 
     #bxh nhạc nghệ sĩ
     header_col, buttons_col = st.columns([2, 1])
@@ -110,7 +108,6 @@ if st.session_state.page == "Home":
     with buttons_col:
         # Chia nhỏ cụm nút bên phải
         time_nav = st.columns(4)
-        # Tùy chỉnh để nút nằm gọn gàng, không bị dãn rộng ra
         with time_nav[0]:
             if st.button("Ngày", key="btn_day_final"): st.session_state.time_filter = "Ngày"
         with time_nav[1]:
@@ -188,14 +185,12 @@ elif st.session_state.page == "Đăng ký":
         st.text_input("Tên tài khoản (Username)", placeholder="Nhập tên tài khoản")
         st.text_input("Địa chỉ email (Email address)", placeholder="Nhập địa chỉ email")
         
-        # Chia cột nhỏ cho mật khẩu để gọn gàng hơn
         c1, c2 = st.columns(2)
         with c1:
             st.text_input("Mật khẩu", type="password", placeholder="Mật khẩu")
         with c2:
             st.text_input("Xác thực lại mật khẩu", type="password", placeholder="Nhập lại mật khẩu")
         
-        # Nút hành động với key riêng biệt để tránh xung đột
         sub_c1, sub_c2 = st.columns(2)
         if sub_c1.button("Đăng ký", use_container_width=True, key="reg_submit_final_page"):
             st.success("Đang tạo tài khoản...")
@@ -241,7 +236,6 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
         l, r = st.columns([1, 1])
         
         with l:
-            # Sửa lại width phù hợp hoặc use_container_width để ảnh không bị vỡ/quá to
             st.image("trang_phap.png", use_container_width=True)
             
         with r:
@@ -312,15 +306,12 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Sơn Tùng M-TP":
     col_img, col_info = st.columns([1, 1.2])
     
     with col_img:
-        # Ảnh Sơn Tùng M-TP chính
         st.image("A1.png", use_container_width=True) 
         
     with col_info:
         st.markdown("# Sơn Tùng M-TP cùng màn Comeback với COME MY WAY")
         st.write("") 
         
-        # MẸO: Dùng ảnh chụp MV (hoặc ảnh thumbnail) làm mock video
-        # Bạn thay "come_my_way.png" hoặc "A1.png" bằng ảnh thumbnail MV của bạn
         st.image("comemyway.png", use_container_width=True)
         
         # Link dẫn trực tiếp tới video YouTube thực tế khi click
@@ -348,7 +339,6 @@ elif st.session_state.page == "Thông tin nghệ sĩ: SOOBIN":
     
     st.write("---")
     
-    # Chia 2 cột tỷ lệ
     col_img, col_info = st.columns([1, 1.2])
     
     with col_img:
@@ -359,7 +349,6 @@ elif st.session_state.page == "Thông tin nghệ sĩ: SOOBIN":
         st.markdown("# Soobin và Binz khuấy đảo MXH cùng bài “Em”")
         st.write("") 
         
-        # Mẹo: Ảnh thumbnail mockup MV "Em"
         st.image("em.png", use_container_width=True, caption="Video EM trên Youtube")
         
         # Link Youtube
@@ -386,19 +375,13 @@ elif st.session_state.page == "Thông tin nghệ sĩ: buitruonglinh":
         st.rerun()
     
     st.write("---")
-    
-    # Chia 2 cột tỷ lệ
     col_img, col_info = st.columns([1, 1.2])
-    
     with col_img:
-        # Ảnh bùi trường linh (A3.png)
         st.image("buitruonglinh.png", use_container_width=True) 
         
     with col_info:
         st.markdown("# Thời của buitruonglinh đã đến với bài ‘Sớm như vậy’")
         st.write("") 
-        
-        # Mẹo: Dùng ảnh mockup cho video YouTube
         st.image("somnhuvay.png", use_container_width=True, caption="Video SỚM NHƯ VẬY trên Youtube")
         
         # Link Youtube
