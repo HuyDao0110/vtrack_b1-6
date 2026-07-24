@@ -216,7 +216,7 @@ elif st.session_state.page == "Ngôn ngữ":
         with cols[i % num_cols]:
             st.write(f"{lang}")
 
-# nghệ sĩ
+# nghệ sĩ Trang Pháp
 elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
     # Khởi tạo trạng thái phát nhạc nếu chưa có
     if "play_music" not in st.session_state:
@@ -289,5 +289,34 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
         with col:
             st.image(rec_images[i], use_container_width=True)
             st.markdown(f"<div style='text-align: center; margin-top: -10px;'></div>", unsafe_allow_html=True)
+
+# nghệ sĩ Sơn Tùng M-TP
+elif st.session_state.page == "Thông tin nghệ sĩ: Sơn Tùng M-TP":
+    if st.button("◀ Back", key="btn_back_sontung"): 
+        st.session_state.page = "Home"
+        st.rerun()
+    
+    st.write("---")
+    col_img, col_info = st.columns([1, 1.2])
+    
+    with col_img:
+        st.image("son_tung.png", use_container_width=True)
+        
+    with col_info:
+        st.markdown("# Sơn Tùng M-TP cùng màn Comeback với COME MY WAY")
+        st.write("")
+        
+        st.video("https://www.youtube.com/watch?v=SIQR9iu09bQ")
+        st.caption("*Video COME MY WAY trên Youtube*")
+
+    st.write("---")
+    
+    st.markdown(
+        """
+        > *"Come My Way" đánh dấu màn tái xuất bùng nổ của Sơn Tùng M-TP qua sự kết hợp cùng rapper Tyga. 
+        Thể hiện hoàn toàn bằng tiếng Anh, bài hát mang giai điệu Hip-hop/Pop hiện đại kết hợp cùng MV độc đáo, 
+        lồng ghép tinh tế văn hóa Việt Nam vào nền nghệ thuật thị giác đương đại.*
+        """
+    )
 
 st.write("---")
