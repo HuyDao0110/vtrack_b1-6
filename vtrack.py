@@ -65,8 +65,11 @@ if st.session_state.page == "Home":
                     if name == "Trang Pháp":
                         st.session_state.page = "Thông tin nghệ sĩ: Trang Pháp"
                         st.rerun()
+                    elif name == "Sơn Tùng M-TP":
+                        st.session_state.page = "Thông tin nghệ sĩ: Sơn Tùng M-TP"
+                        st.rerun()
                     else:
-                        st.toast(f"Tính năng xem thông tin {name} đang được phát triển!")
+                        st.toast(f"Tính năng xem thông tin của nghệ sĩ {name} đang được phát triển!")
 
 
     # ==================== ALBUM NỔI BẬT ====================
