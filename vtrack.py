@@ -296,7 +296,7 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
 # nghệ sĩ Sơn Tùng M-TP
 elif st.session_state.page == "Thông tin nghệ sĩ: Sơn Tùng M-TP":
     # Nút quay lại
-    if st.button("◀ Back", key="btn_back_sontung"): 
+    if st.button("◀ Quay lại", key="btn_back_sontung"): 
         st.session_state.page = "Home"
         st.rerun()
     
