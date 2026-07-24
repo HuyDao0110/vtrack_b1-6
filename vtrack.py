@@ -290,22 +290,4 @@ elif st.session_state.page == "Thông tin nghệ sĩ: Trang Pháp":
             st.image(rec_images[i], use_container_width=True)
             st.markdown(f"<div style='text-align: center; margin-top: -10px;'></div>", unsafe_allow_html=True)
 
-    #tiểu sử
-    st.write("### Tiểu sử")
-    st.write("Trang Pháp (Nguyễn Thùy Trang, sinh năm 1989) là một nữ nghệ sĩ toàn năng của showbiz Việt, nổi bật với vai trò ca sĩ, nhạc sĩ và nhà sản xuất âm nhạc.")
-    st.write("Sau một thời gian lui về hậu trường làm sản xuất, cô đã có màn tái xuất bùng nổ tại chương trình Chị Đẹp Đạp Gió Rẽ Sóng 2023. ")
-    st.write("Bằng các kỹ năng âm nhạc toàn diện, cô xuất sắc giành ngôi vị Quán quân, khẳng định vị thế của một nghệ có tư duy văn minh và tầm ảnh hưởng lớn trong làng nhạc Việt hiện đại.")
-    
-    #đề xuất
-    st.write("## Có thể bạn thích")
-    c1, c2, c3, c4 = st.columns([1, 1, 2, 1])
-    rec_images = ["C1.png", "C2.png", "C3.png", "C4.png"]
-    
-    cols = [c1, c2, c3, c4]
-    
-    for i, col in enumerate(cols):
-        with col:
-            st.image(rec_images[i], use_container_width=True)
-            st.markdown(f"<div style='text-align: center; margin-top: -10px;'/div>", unsafe_allow_html=True)
-
 st.write("---")
